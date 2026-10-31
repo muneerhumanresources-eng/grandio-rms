@@ -69,7 +69,6 @@
  <aside class="sidebar" aria-label="القائمة الرئيسية">
   <div class="side-caption">القائمة الرئيسية</div>
   <button class="nav-btn active" data-view="dashboard" onclick="showView('dashboard')"><span>⌂</span>لوحة الملخص</button>
-  <button class="nav-btn" data-view="sales" onclick="showView('sales')"><span>▣</span>إدارة المبيعات</button>
   <button class="nav-btn" data-view="catalog" onclick="showView('catalog')"><span>▦</span>الخدمات والأسعار</button>
   <button class="nav-btn" data-view="revenues" onclick="showView('revenues')"><span>◈</span>الإيرادات</button>
   <button class="nav-btn" data-view="expenses" onclick="showView('expenses')"><span>−</span>المصروفات</button>
@@ -96,10 +95,10 @@
     <article class="kpi green"><small>إجمالي التحصيلات قبل التسويات</small><strong id="dashRevenue">0.00 ر.س</strong></article><article class="kpi red"><small>إجمالي التسويات</small><strong id="dashAdjustments">0.00 ر.س</strong></article><article class="kpi green"><small>إرجاع العهد</small><strong id="dashCustodyReturns">0.00 ر.س</strong></article><article class="kpi red"><small>المصروفات المباشرة</small><strong id="dashExpenses">0.00 ر.س</strong></article><article class="kpi"><small>مصروفات مسواة بالعهد</small><strong id="dashCustodyExpenses">0.00 ر.س</strong></article><article class="kpi"><small>صافي التدفق بعد التسويات ومرتجعات العهدة والمصروفات المباشرة</small><strong id="dashNet">0.00 ر.س</strong></article>
    </div>
    <div class="dashboard-grid">
-    <div class="panel"><h3>الوصول السريع</h3><div class="quick-cards"><button class="quick-card" onclick="showView('sales');clearSaleForm()"><b>تسجيل عملية بيع</b><small>أدخل الخدمة أو الصنف والكمية والسعر والتحصيل.</small></button><button class="quick-card" onclick="showView('revenues');clearRevenueForm()"><b>إضافة حركة إيراد / تسوية</b><small>سجل تحصيلًا أو تسوية مالية مستقلة.</small></button></div></div>
+    <div class="panel"><h3>الوصول السريع</h3><div class="quick-cards"><button class="quick-card" onclick="showView('revenues');clearRevenueForm()"><b>إضافة حركة إيراد / تسوية</b><small>سجل تحصيلًا أو تسوية مالية مستقلة.</small></button></div></div>
     <div class="panel"><h3>ملخص العلاقة المالية</h3><div class="summary-line"><span>قيمة البيع</span><strong>الإجمالي بعد الخصم</strong></div><div class="summary-line"><span>الإيراد</span><strong>المبلغ المستلم فقط</strong></div><div class="summary-line"><span>المتبقي</span><strong>قيمة البيع − المحصل</strong></div><div class="data-note"><b>تنبيه</b><span>تحصيلات المبيعات تنشأ تلقائيًا في سجل الإيرادات مرة واحدة؛ لا تسجلها يدويًا مرة أخرى.</span></div></div>
    </div>
-   <div class="panel"><div class="section-head"><h3>آخر عمليات البيع</h3><button class="btn small" onclick="showView('sales')">فتح سجل المبيعات</button></div><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الفندق</th><th>الخدمة / الصنف</th><th>الإجمالي</th><th>المحصل</th><th>المتبقي</th></tr></thead><tbody id="recentSales"></tbody></table></div><div id="recentSalesEmpty" class="empty">لا توجد مبيعات بعد.</div></div>
+   <div class="panel" style="display:none"><div class="section-head"><h3>آخر عمليات البيع</h3><button class="btn small" onclick="showView('sales')">فتح سجل المبيعات</button></div><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الفندق</th><th>الخدمة / الصنف</th><th>الإجمالي</th><th>المحصل</th><th>المتبقي</th></tr></thead><tbody id="recentSales"></tbody></table></div><div id="recentSalesEmpty" class="empty">لا توجد مبيعات بعد.</div></div>
    <div class="data-note"><b>خصوصية البيانات</b><span>يعمل هذا الملف محليًا. استخدم زر «نسخة احتياطية» بانتظام واحفظ الملف في مكان آمن. حذف بيانات المتصفح أو تغيير المتصفح قد يفقد السجلات غير المصدّرة.</span></div>
   </section>
   <section id="sales" class="view">
