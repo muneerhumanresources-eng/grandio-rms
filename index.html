@@ -368,62 +368,83 @@ tbody tr:hover{background:rgba(20,46,72,.56)}
 <style>@media print{body.print-revenue-statement #revenueStatement .statement-category-summary{display:none!important}}</style>
 <style>@media print{body.print-revenue-statement #revenueStatement.revenue-print-long .revenue-print-audit-strip{grid-template-columns:repeat(6,minmax(0,1fr))!important}body.print-revenue-statement #revenueStatement.revenue-print-long .statement-cards{display:none!important}body.print-revenue-statement #revenueStatement .revenue-statement-table tbody td{padding:0.9mm 0.6mm!important;line-height:1.08!important}}</style>
 <style>@media print{body.print-revenue-statement #revenueStatement:not(.revenue-print-long) .revenue-statement-table th,body.print-revenue-statement #revenueStatement:not(.revenue-print-long) .revenue-statement-table td{font-size:8pt!important}body.print-revenue-statement #revenueStatement:not(.revenue-print-long) .revenue-statement-table th{font-size:7.7pt!important}body.print-revenue-statement #revenueStatement:not(.revenue-print-long) .revenue-statement-table tbody td{padding:1.8mm 0.7mm!important}}</style>
-<style id="grandioCalculatorStyles">
-#grandioCalculatorRoot{position:fixed;right:22px;bottom:22px;z-index:90;font-family:'Noto Sans Arabic',Tahoma,Arial,sans-serif;color:#eef4f8}
-#grandioCalculatorRoot[hidden],#grandioCalculatorPanel[hidden]{display:none!important}
-.grandio-calc-fab{position:relative;display:grid;place-items:center;width:58px;height:58px;border:1px solid #d7bc70;border-radius:50%;background:linear-gradient(145deg,#183651,#0a1b2d);color:#f0d98c;box-shadow:0 10px 28px #06111f70,0 0 0 4px #c9a45318;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease;isolation:isolate}
-.grandio-calc-fab:hover{transform:translateY(-3px);box-shadow:0 14px 34px #06111f88,0 0 0 6px #c9a45322}
-.grandio-calc-fab::before,.grandio-calc-fab::after{content:"";position:absolute;inset:-7px;border:1px solid #c9a45366;border-top-color:#f4dc8d;border-radius:50%;animation:grandioCalcOrbit 7s linear infinite;pointer-events:none}
-.grandio-calc-fab::after{inset:-12px;border-color:#c9a45322;border-right-color:#e8ca6c;animation-duration:11s;animation-direction:reverse}
-.grandio-calc-fab svg{width:25px;height:25px;position:relative;z-index:1}
-.grandio-calc-fab-label{position:absolute;right:68px;white-space:nowrap;padding:6px 10px;border:1px solid #c9a45366;border-radius:999px;background:#10283eeF;color:#f3e4b4;font-size:11px;font-weight:700;box-shadow:0 5px 16px #06111f55;opacity:0;transform:translateX(5px);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
-.grandio-calc-fab:hover .grandio-calc-fab-label,.grandio-calc-fab:focus-visible .grandio-calc-fab-label{opacity:1;transform:translateX(0)}
-.grandio-calc-panel{position:absolute;right:0;bottom:76px;width:min(360px,calc(100vw - 28px));max-height:min(620px,calc(100vh - 116px));overflow:auto;overscroll-behavior:contain;padding:15px;border:1px solid #c9a453aa;border-radius:18px;background:linear-gradient(155deg,#102b43f5,#081827f8);box-shadow:0 22px 70px #02091285,0 0 30px #c9a45324;backdrop-filter:blur(18px);transform-origin:bottom right;animation:grandioCalcEnter .28s cubic-bezier(.2,.8,.2,1) both;scrollbar-width:thin;scrollbar-color:#c9a45366 #0b1d2d}
-.grandio-calc-panel::before{content:"";position:absolute;top:0;left:-38%;width:36%;height:2px;background:linear-gradient(90deg,transparent,#f3dc8e,transparent);animation:grandioCalcSweep 5.8s ease-in-out infinite;pointer-events:none}
-.grandio-calc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}
-.grandio-calc-title{display:flex;align-items:center;gap:10px;min-width:0}
-.grandio-calc-mark{display:grid;place-items:center;width:37px;height:37px;flex:none;border:1px solid #c9a45366;border-radius:11px;background:#c9a45314;color:#e7c66a}
-.grandio-calc-mark svg{width:19px;height:19px}
-.grandio-calc-title small{display:block;color:#c9a453;font-size:9px;letter-spacing:.9px;font-weight:800}
-.grandio-calc-title h2{margin:2px 0 0;color:#f5f7f8;font-size:16px;line-height:1.25}
-.grandio-calc-close{display:grid;place-items:center;width:34px;height:34px;border:1px solid #38546c;border-radius:10px;background:#10263a;color:#cad7e1;font-size:20px;cursor:pointer}
-.grandio-calc-close:hover{border-color:#c9a453;color:#f0d98c}
-.grandio-calc-display{padding:12px 13px;margin-bottom:10px;border:1px solid #34536d;border-radius:12px;background:linear-gradient(135deg,#071725,#112f49);box-shadow:inset 0 1px 8px #02081255}
-.grandio-calc-expression{min-height:18px;overflow:hidden;text-align:left;color:#a9bece;font-size:12px;white-space:nowrap;text-overflow:ellipsis}
-.grandio-calc-value{display:block;min-height:37px;margin-top:4px;overflow:hidden;text-align:left;direction:ltr;color:#fff;font-size:28px;font-weight:750;line-height:1.25;font-variant-numeric:tabular-nums;white-space:nowrap;text-overflow:ellipsis}
-.grandio-calc-status{min-height:17px;margin:5px 2px 8px;color:#c9a453;font-size:10px}
-.grandio-calc-keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
-.grandio-calc-key{min-height:44px;border:1px solid #2d4961;border-radius:10px;background:linear-gradient(145deg,#17344d,#10263a);color:#ecf2f6;font:inherit;font-size:17px;font-weight:650;cursor:pointer;transition:transform .12s ease,border-color .15s ease,background .15s ease,box-shadow .15s ease}
-.grandio-calc-key:hover{transform:translateY(-1px);border-color:#c9a45399;background:#1c3b56;box-shadow:0 4px 12px #030a1270}
-.grandio-calc-key:active{transform:translateY(1px) scale(.98)}
-.grandio-calc-key.utility{background:#0c2134;color:#c7d4df;font-size:13px}
-.grandio-calc-key.operator{border-color:#53616c;background:#182e41;color:#e4cf8a}
-.grandio-calc-key.equals{border-color:#dfc36c;background:linear-gradient(135deg,#d8b85b,#b9953f);color:#13283b;font-size:22px;box-shadow:0 5px 16px #c9a45338}
-.grandio-calc-key.zero{grid-column:span 2}
-.grandio-calc-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
-.grandio-calc-action{min-height:36px;border:1px solid #37536a;border-radius:9px;background:#112a40;color:#dce6ed;font:inherit;font-size:11px;font-weight:700;cursor:pointer}
-.grandio-calc-action:hover{border-color:#c9a453;color:#f0d98c}
-.grandio-calc-history{margin-top:12px;padding-top:10px;border-top:1px solid #29445a}
-.grandio-calc-history-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}
-.grandio-calc-history h3{margin:0;color:#dfe8ee;font-size:11px}
-.grandio-calc-history-list{display:grid;gap:4px;max-height:105px;overflow:auto}
-.grandio-calc-history-empty{padding:7px 8px;border-radius:8px;background:#0a1c2d;color:#91a8ba;font-size:10px}
-.grandio-calc-history-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 8px;border:1px solid #203b52;border-radius:8px;background:#0b2032;color:#bdcbd6;font-size:10px}
-.grandio-calc-history-item span{overflow:hidden;text-align:left;direction:ltr;white-space:nowrap;text-overflow:ellipsis}
-.grandio-calc-history-item b{color:#e6d28e;font-size:11px;direction:ltr;white-space:nowrap}
-.grandio-calc-note{margin:9px 0 0;color:#8098aa;font-size:9px;line-height:1.6}
-.grandio-calc-panel button:focus-visible,.grandio-calc-fab:focus-visible{outline:2px solid #f1d77d;outline-offset:2px}
-@keyframes grandioCalcEnter{from{opacity:0;transform:translateY(13px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes grandioCalcOrbit{to{transform:rotate(360deg)}}
-@keyframes grandioCalcSweep{0%,100%{left:-38%;opacity:0}20%{opacity:.9}75%{left:105%;opacity:.6}}
-@media(max-width:540px){#grandioCalculatorRoot{right:14px;bottom:16px}.grandio-calc-panel{right:-2px;bottom:72px;width:calc(100vw - 28px);max-height:calc(100vh - 104px);padding:12px}.grandio-calc-key{min-height:42px}.grandio-calc-value{font-size:25px}}
-@media(prefers-reduced-motion:reduce){.grandio-calc-fab::before,.grandio-calc-fab::after,.grandio-calc-panel::before{animation:none!important}.grandio-calc-panel{animation:none!important}.grandio-calc-fab,.grandio-calc-key{transition:none!important}}
+<style id="grandioCalculatorFinanceStyles">
+#grandioCalculatorRoot{position:fixed;right:280px;bottom:22px;z-index:90;font-family:'Noto Sans Arabic',Tahoma,Arial,sans-serif;color:#edf3f7;isolation:isolate}
+#grandioCalculatorRoot[hidden],#grandioCalculatorBackdrop[hidden],.grandio-fin-rate-row[hidden],#grandioCalculatorStandardKeys[hidden],#grandioCalculatorNumberKeys[hidden]{display:none!important}
+.grandio-fin-fab{position:fixed;right:280px;bottom:22px;z-index:4;width:58px;height:58px;display:grid;place-items:center;border:1px solid #d9bf72;border-radius:50%;background:linear-gradient(145deg,#183a55,#0b1d2e);color:#f0d98d;box-shadow:0 10px 28px #06111f70,0 0 0 4px #c9a45318;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.grandio-fin-fab:hover{transform:translateY(-3px);box-shadow:0 14px 32px #06111f88,0 0 0 6px #c9a45325}
+.grandio-fin-fab::before,.grandio-fin-fab::after{content:"";position:absolute;inset:-7px;border:1px solid #c9a45366;border-top-color:#f4dc8d;border-radius:50%;animation:grandioFinOrbit 7s linear infinite;pointer-events:none}
+.grandio-fin-fab::after{inset:-12px;border-color:#c9a45322;border-right-color:#e8ca6c;animation-duration:11s;animation-direction:reverse}
+.grandio-fin-fab svg{width:25px;height:25px}
+.grandio-fin-fab-label{position:absolute;right:68px;white-space:nowrap;padding:6px 10px;border:1px solid #c9a45366;border-radius:999px;background:#10283eef;color:#f3e4b4;font-size:11px;font-weight:700;opacity:0;transform:translateX(5px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}
+.grandio-fin-fab:hover .grandio-fin-fab-label,.grandio-fin-fab:focus-visible .grandio-fin-fab-label{opacity:1;transform:translateX(0)}
+#grandioCalculatorBackdrop{position:fixed;inset:0;z-index:1;display:grid;place-items:center;padding:24px 280px 24px 24px;background:#04101bc9;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.grandio-fin-panel{position:relative;width:min(920px,100%);max-height:calc(100vh - 48px);overflow:auto;padding:20px;border:1px solid #d1b15c;border-radius:20px;background:linear-gradient(145deg,#0c2134f8,#102c43f7);box-shadow:0 24px 80px #020811a8,0 0 34px #d0ac5030;transform-origin:center;animation:grandioFinEnter .24s cubic-bezier(.2,.8,.2,1) both;scrollbar-width:thin;scrollbar-color:#c9a45366 #0a1d2e}
+.grandio-fin-panel::before{content:"";position:absolute;top:0;left:-34%;width:30%;height:2px;background:linear-gradient(90deg,transparent,#f4dc8d,transparent);animation:grandioFinSweep 6s ease-in-out infinite;pointer-events:none}
+.grandio-fin-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.grandio-fin-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.grandio-fin-mark{display:grid;place-items:center;width:43px;height:43px;flex:none;border:1px solid #c9a45377;border-radius:12px;background:#c9a45312;color:#e6c76d}
+.grandio-fin-mark svg{width:22px;height:22px}
+.grandio-fin-brand small{display:block;color:#c9a453;font-size:9px;letter-spacing:1px;font-weight:800}
+.grandio-fin-brand h2{margin:3px 0 0;color:#f5f7f8;font-size:20px;line-height:1.2}
+.grandio-fin-brand p{margin:4px 0 0;color:#a8bbca;font-size:11px}
+.grandio-fin-close{display:grid;place-items:center;width:38px;height:38px;flex:none;border:1px solid #39556d;border-radius:10px;background:#10263a;color:#d8e1e8;font-size:22px;cursor:pointer}
+.grandio-fin-close:hover{border-color:#c9a453;color:#f1d98b}
+.grandio-fin-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0 14px}
+.grandio-fin-tab{min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #2d4961;border-radius:11px;background:#10283d;color:#c4d1dc;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .16s ease,border-color .16s ease,transform .16s ease}
+.grandio-fin-tab:hover{border-color:#b99b4f;transform:translateY(-1px)}
+.grandio-fin-tab[aria-selected="true"]{border-color:#e1c361;background:linear-gradient(135deg,#e2c66b,#c8a84b);color:#102438;box-shadow:0 6px 20px #c9a4532c}
+.grandio-fin-status{min-height:18px;margin:-3px 2px 8px;color:#e6c76d;font-size:11px}
+.grandio-fin-workspace{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:14px;direction:ltr;align-items:stretch}
+.grandio-fin-entry,.grandio-fin-summary{min-width:0;padding:14px;border:1px solid #294960;border-radius:15px;background:linear-gradient(150deg,#0b1e30,#10283d)}
+.grandio-fin-entry{direction:rtl}
+.grandio-fin-field{display:grid;gap:6px;margin-bottom:10px}
+.grandio-fin-field label{color:#b8c8d4;font-size:11px;font-weight:700}
+.grandio-fin-input-wrap{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid #34546d;border-radius:10px;background:#071a2b;transition:border-color .16s ease,box-shadow .16s ease}
+.grandio-fin-input-wrap:focus-within{border-color:#c9a453;box-shadow:0 0 0 3px #c9a45320}
+.grandio-fin-input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#f4f7f9;text-align:left;direction:ltr;font:inherit;font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+.grandio-fin-input::placeholder{color:#6f879b}
+.grandio-fin-unit{flex:none;color:#a6bac9;font-size:11px}
+.grandio-fin-rate-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(92px,.55fr);gap:8px}
+.grandio-fin-rate-row .grandio-fin-field{margin-bottom:8px}
+.grandio-fin-keypad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:10px;direction:ltr}
+.grandio-fin-key{min-height:42px;border:1px solid #2e4b63;border-radius:9px;background:linear-gradient(145deg,#17354e,#10273a);color:#eff4f7;font:inherit;font-size:16px;font-weight:650;cursor:pointer;transition:transform .12s ease,border-color .14s ease,background .14s ease}
+.grandio-fin-key:hover{transform:translateY(-1px);border-color:#c9a45399;background:#1c3e58}
+.grandio-fin-key:active{transform:translateY(1px) scale(.98)}
+.grandio-fin-key.utility{background:#0d2134;color:#cbd7e0;font-size:13px}
+.grandio-fin-key.operator{background:#192f42;color:#e3ce88}
+.grandio-fin-key.equals{border-color:#dfc46d;background:linear-gradient(135deg,#dfc164,#bf9c43);color:#102438;font-size:20px}
+.grandio-fin-key.zero{grid-column:span 2}
+.grandio-fin-number-keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:10px;direction:ltr}
+.grandio-fin-number-keys .grandio-fin-key{min-height:40px}
+.grandio-fin-number-keys .zero{grid-column:span 2}
+.grandio-fin-number-keys .utility{font-size:14px}
+.grandio-fin-summary{display:flex;flex-direction:column;direction:rtl}
+.grandio-fin-summary-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.grandio-fin-summary-head h3{margin:0;color:#e4cf83;font-size:14px}
+.grandio-fin-summary-head span{color:#9bb0c1;font-size:10px}
+.grandio-fin-result-caption{margin:5px 0 2px;color:#a9bdcc;font-size:11px}
+.grandio-fin-result{display:flex;align-items:baseline;gap:8px;min-height:54px;padding:6px 0 10px;border-bottom:1px solid #35546a;color:#f0d371;font-size:clamp(28px,4vw,40px);font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums;direction:ltr;justify-content:flex-end}
+.grandio-fin-result-unit{flex:none;color:#e2cf8a;font-size:12px;font-weight:700}
+.grandio-fin-breakdown{display:grid;gap:0;margin:7px 0 12px}
+.grandio-fin-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid #263f54;color:#b8c8d4;font-size:11px}
+.grandio-fin-row:last-child{border-bottom:0}
+.grandio-fin-row strong{color:#edf3f6;font-size:13px;font-weight:700;direction:ltr;white-space:nowrap;font-variant-numeric:tabular-nums}
+.grandio-fin-row.total{margin-top:2px;padding:11px 10px;border:1px solid #b99b4e;border-radius:10px;background:#c9a45314;color:#ecd98d;font-weight:800}
+.grandio-fin-row.total strong{color:#f2d66e;font-size:15px}
+.grandio-fin-copy{width:100%;min-height:42px;margin-top:auto;border:1px solid #dfc263;border-radius:10px;background:linear-gradient(135deg,#e0c060,#bf9d45);color:#102438;font:inherit;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px #c9a45326}
+.grandio-fin-copy:hover{filter:brightness(1.06)}
+.grandio-fin-note{margin:9px 0 0;color:#8097a9;font-size:9px;line-height:1.6}
+.grandio-fin-panel button:focus-visible,.grandio-fin-fab:focus-visible{outline:2px solid #f1d77d;outline-offset:2px}
+@keyframes grandioFinEnter{from{opacity:0;transform:translateY(9px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes grandioFinOrbit{to{transform:rotate(360deg)}}
+@keyframes grandioFinSweep{0%,100%{left:-34%;opacity:0}20%{opacity:.9}75%{left:105%;opacity:.6}}
+@media(max-width:1050px) and (min-width:701px){#grandioCalculatorRoot .grandio-fin-fab{right:210px}#grandioCalculatorBackdrop{padding-right:210px;padding-left:16px}.grandio-fin-panel{padding:16px}.grandio-fin-entry,.grandio-fin-summary{padding:11px}}
+@media(max-width:700px){#grandioCalculatorRoot .grandio-fin-fab{right:14px;bottom:16px}#grandioCalculatorBackdrop{padding:10px;place-items:center}.grandio-fin-panel{width:100%;max-height:calc(100vh - 20px);padding:13px;border-radius:15px}.grandio-fin-workspace{grid-template-columns:1fr;gap:10px}.grandio-fin-tabs{gap:6px}.grandio-fin-tab{min-height:40px;font-size:12px}.grandio-fin-key{min-height:39px}.grandio-fin-number-keys .grandio-fin-key{min-height:38px}.grandio-fin-result{min-height:46px;font-size:30px}}
+@media(max-width:480px){.grandio-fin-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.grandio-fin-head{margin-bottom:10px}.grandio-fin-brand h2{font-size:17px}.grandio-fin-brand p{font-size:10px}.grandio-fin-entry,.grandio-fin-summary{padding:10px}.grandio-fin-keypad,.grandio-fin-number-keys{gap:5px}.grandio-fin-key{min-height:36px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.grandio-fin-fab::before,.grandio-fin-fab::after,.grandio-fin-panel::before{animation:none!important}.grandio-fin-panel,.grandio-fin-fab,.grandio-fin-tab,.grandio-fin-key{animation:none!important;transition:none!important}}
 @media print{#grandioCalculatorRoot{display:none!important}}
 </style>
-<style id="grandioCalcPlacementFix">#grandioCalculatorRoot{right:280px}@media(max-width:1050px) and (min-width:701px){#grandioCalculatorRoot{right:210px}}@media(max-width:700px){#grandioCalculatorRoot{right:14px;bottom:16px}}</style>
-<style id="grandioCalcCompactFix">.grandio-calc-history summary{display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;list-style:none;color:#dfe8ee;font-size:11px;font-weight:700}.grandio-calc-history summary::-webkit-details-marker{display:none}.grandio-calc-history summary::after{content:"＋";color:#c9a453;font-size:13px}.grandio-calc-history[open] summary::after{content:"−"}.grandio-calc-history-list{margin-top:7px}
-@media(min-width:701px){.grandio-calc-panel{width:min(340px,calc(100vw - 28px));max-height:min(540px,calc(100vh - 100px));padding:12px}.grandio-calc-display{padding:9px 11px;margin-bottom:7px}.grandio-calc-status{min-height:14px;margin:3px 2px 6px}.grandio-calc-key{min-height:38px}.grandio-calc-history-list{max-height:72px}.grandio-calc-actions{margin-top:7px}}@media(min-width:541px) and (max-width:700px){.grandio-calc-panel{max-height:calc(100vh - 104px)}}@media print{#grandioCalculatorRoot{display:none!important}}</style>
-<style id="grandioCalcKeypadDirectionFix">.grandio-calc-keys{direction:ltr}</style>
 </head>
 <body>
 <div class="shell">
@@ -1002,65 +1023,62 @@ bootAuth();
 
 </script>
 <div id="grandioCalculatorRoot" hidden>
- <button id="grandioCalculatorFab" class="grandio-calc-fab" type="button" aria-label="فتح الحاسبة السريعة" aria-controls="grandioCalculatorPanel" aria-expanded="false" title="حاسبة سريعة">
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M8 7h8M8 11h2m3 0h2m-7 3h2m3 0h2m-7 3h2m3 0h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="grandio-calc-fab-label">حاسبة سريعة</span>
+ <button id="grandioCalculatorFab" class="grandio-fin-fab" type="button" aria-label="فتح الحاسبة المالية" aria-controls="grandioCalculatorBackdrop" aria-expanded="false" title="الحاسبة المالية">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M8 7h8M8 11h2m3 0h2m-7 3h2m3 0h2m-7 3h2m3 0h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="grandio-fin-fab-label">أدوات مالية سريعة</span>
  </button>
- <section id="grandioCalculatorPanel" class="grandio-calc-panel" role="dialog" aria-modal="false" aria-labelledby="grandioCalculatorTitle" hidden>
-  <header class="grandio-calc-head"><div class="grandio-calc-title"><span class="grandio-calc-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M8 7h8M8 11h2m3 0h2m-7 3h2m3 0h2m-7 3h2m3 0h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div><small>GRANDIO · QUICK CALC</small><h2 id="grandioCalculatorTitle">حاسبة سريعة</h2></div></div><button id="grandioCalculatorClose" class="grandio-calc-close" type="button" aria-label="إغلاق الحاسبة">×</button></header>
-  <div class="grandio-calc-display" aria-live="polite"><div id="grandioCalculatorExpression" class="grandio-calc-expression" dir="ltr">ابدأ الحساب</div><output id="grandioCalculatorValue" class="grandio-calc-value" dir="ltr">0</output></div>
-  <div id="grandioCalculatorStatus" class="grandio-calc-status" role="status" aria-live="polite"></div>
-  <div id="grandioCalculatorKeys" class="grandio-calc-keys" aria-label="أزرار الحاسبة">
-   <button class="grandio-calc-key utility" type="button" data-calc-action="clear">مسح</button><button class="grandio-calc-key utility" type="button" data-calc-action="backspace" aria-label="حذف آخر رقم">⌫</button><button class="grandio-calc-key operator" type="button" data-calc-key="%" aria-label="نسبة مئوية">%</button><button class="grandio-calc-key operator" type="button" data-calc-key="/" aria-label="قسمة">÷</button>
-   <button class="grandio-calc-key" type="button" data-calc-key="7">7</button><button class="grandio-calc-key" type="button" data-calc-key="8">8</button><button class="grandio-calc-key" type="button" data-calc-key="9">9</button><button class="grandio-calc-key operator" type="button" data-calc-key="*" aria-label="ضرب">×</button>
-   <button class="grandio-calc-key" type="button" data-calc-key="4">4</button><button class="grandio-calc-key" type="button" data-calc-key="5">5</button><button class="grandio-calc-key" type="button" data-calc-key="6">6</button><button class="grandio-calc-key operator" type="button" data-calc-key="-" aria-label="طرح">−</button>
-   <button class="grandio-calc-key" type="button" data-calc-key="1">1</button><button class="grandio-calc-key" type="button" data-calc-key="2">2</button><button class="grandio-calc-key" type="button" data-calc-key="3">3</button><button class="grandio-calc-key operator" type="button" data-calc-key="+" aria-label="جمع">+</button>
-   <button class="grandio-calc-key zero" type="button" data-calc-key="0">0</button><button class="grandio-calc-key" type="button" data-calc-key=".">.</button><button class="grandio-calc-key equals" type="button" data-calc-action="equals" aria-label="يساوي">=</button>
-  </div>
-  <div class="grandio-calc-actions"><button id="grandioCalculatorCopy" class="grandio-calc-action" type="button">نسخ النتيجة</button><button id="grandioCalculatorClearHistory" class="grandio-calc-action" type="button">مسح السجل</button></div>
-  <details class="grandio-calc-history"><summary id="grandioCalculatorHistoryTitle">آخر العمليات</summary><div id="grandioCalculatorHistory" class="grandio-calc-history-list"><div class="grandio-calc-history-empty">لا توجد عمليات بعد</div></div></details>
-  <p class="grandio-calc-note">الحسابات مؤقتة ولا تُضاف إلى سجلات النظام أو قاعدة بياناته.</p>
- </section>
+ <div id="grandioCalculatorBackdrop" hidden>
+  <section id="grandioCalculatorPanel" class="grandio-fin-panel" role="dialog" aria-modal="true" aria-labelledby="grandioCalculatorTitle" tabindex="-1">
+   <header class="grandio-fin-head"><div class="grandio-fin-brand"><span class="grandio-fin-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M8 7h8M8 11h2m3 0h2m-7 3h2m3 0h2m-7 3h2m3 0h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div><small>GRANDIO · FINANCE TOOLS</small><h2 id="grandioCalculatorTitle">أدوات مالية سريعة</h2><p>حساب واضح وسريع لقراراتك اليومية</p></div></div><button id="grandioCalculatorClose" class="grandio-fin-close" type="button" aria-label="إغلاق الحاسبة">×</button></header>
+   <div class="grandio-fin-tabs" role="tablist" aria-label="أوضاع الحاسبة"><button class="grandio-fin-tab" type="button" role="tab" aria-selected="false" data-calc-mode="standard">عادي</button><button class="grandio-fin-tab" type="button" role="tab" aria-selected="true" data-calc-mode="tax">الضريبة</button><button class="grandio-fin-tab" type="button" role="tab" aria-selected="false" data-calc-mode="discount">الخصم</button><button class="grandio-fin-tab" type="button" role="tab" aria-selected="false" data-calc-mode="percentage">النسبة</button></div>
+   <div id="grandioCalculatorStatus" class="grandio-fin-status" role="status" aria-live="polite"></div>
+   <div class="grandio-fin-workspace">
+    <section class="grandio-fin-entry" aria-label="إدخال المبلغ والعملية">
+     <div class="grandio-fin-field"><label id="grandioCalculatorAmountLabel" for="grandioCalculatorAmount">المبلغ قبل الضريبة</label><div class="grandio-fin-input-wrap"><input id="grandioCalculatorAmount" class="grandio-fin-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0" aria-label="المبلغ أو العملية" dir="ltr"><span id="grandioCalculatorAmountUnit" class="grandio-fin-unit">ر.س</span></div></div>
+     <div id="grandioCalculatorRateRow" class="grandio-fin-rate-row"><div class="grandio-fin-field"><label id="grandioCalculatorRateLabel" for="grandioCalculatorRate">نسبة الضريبة</label><div class="grandio-fin-input-wrap"><input id="grandioCalculatorRate" class="grandio-fin-input" type="text" inputmode="decimal" autocomplete="off" value="15" aria-label="نسبة الضريبة" dir="ltr"><span class="grandio-fin-unit">%</span></div></div><div class="grandio-fin-field"><label>ملاحظة</label><div class="grandio-fin-input-wrap"><span class="grandio-fin-unit">قابلة للتعديل</span></div></div></div>
+     <div id="grandioCalculatorStandardKeys" class="grandio-fin-keypad" hidden aria-label="لوحة العمليات الحسابية"><button class="grandio-fin-key utility" type="button" data-calc-action="clear">C</button><button class="grandio-fin-key utility" type="button" data-calc-action="backspace" aria-label="حذف آخر رقم">⌫</button><button class="grandio-fin-key operator" type="button" data-calc-key="%" aria-label="نسبة مئوية">%</button><button class="grandio-fin-key operator" type="button" data-calc-key="/" aria-label="قسمة">÷</button><button class="grandio-fin-key" type="button" data-calc-key="7">7</button><button class="grandio-fin-key" type="button" data-calc-key="8">8</button><button class="grandio-fin-key" type="button" data-calc-key="9">9</button><button class="grandio-fin-key operator" type="button" data-calc-key="*" aria-label="ضرب">×</button><button class="grandio-fin-key" type="button" data-calc-key="4">4</button><button class="grandio-fin-key" type="button" data-calc-key="5">5</button><button class="grandio-fin-key" type="button" data-calc-key="6">6</button><button class="grandio-fin-key operator" type="button" data-calc-key="-" aria-label="طرح">−</button><button class="grandio-fin-key" type="button" data-calc-key="1">1</button><button class="grandio-fin-key" type="button" data-calc-key="2">2</button><button class="grandio-fin-key" type="button" data-calc-key="3">3</button><button class="grandio-fin-key operator" type="button" data-calc-key="+" aria-label="جمع">+</button><button class="grandio-fin-key zero" type="button" data-calc-key="0">0</button><button class="grandio-fin-key" type="button" data-calc-key=".">.</button><button class="grandio-fin-key equals" type="button" data-calc-action="equals" aria-label="يساوي">=</button></div>
+     <div id="grandioCalculatorNumberKeys" class="grandio-fin-number-keys" aria-label="لوحة إدخال الأرقام" hidden><button class="grandio-fin-key utility" type="button" data-calc-action="clear">C</button><button class="grandio-fin-key utility" type="button" data-calc-action="backspace" aria-label="حذف آخر رقم">⌫</button><button class="grandio-fin-key" type="button" data-calc-key="00">00</button><button class="grandio-fin-key" type="button" data-calc-key="7">7</button><button class="grandio-fin-key" type="button" data-calc-key="8">8</button><button class="grandio-fin-key" type="button" data-calc-key="9">9</button><button class="grandio-fin-key" type="button" data-calc-key="4">4</button><button class="grandio-fin-key" type="button" data-calc-key="5">5</button><button class="grandio-fin-key" type="button" data-calc-key="6">6</button><button class="grandio-fin-key" type="button" data-calc-key="1">1</button><button class="grandio-fin-key" type="button" data-calc-key="2">2</button><button class="grandio-fin-key" type="button" data-calc-key="3">3</button><button class="grandio-fin-key zero" type="button" data-calc-key="0">0</button><button class="grandio-fin-key" type="button" data-calc-key=".">.</button></div>
+    </section>
+    <section class="grandio-fin-summary" aria-labelledby="grandioCalculatorSummaryTitle"><div class="grandio-fin-summary-head"><h3 id="grandioCalculatorSummaryTitle">نتيجة الحساب</h3><span id="grandioCalculatorSummaryUnit">تقدير فوري</span></div><div id="grandioCalculatorResultCaption" class="grandio-fin-result-caption">الإجمالي بعد الضريبة</div><div class="grandio-fin-result" aria-live="polite"><strong id="grandioCalculatorResult">0</strong><span id="grandioCalculatorResultUnit" class="grandio-fin-result-unit">ر.س</span></div><div id="grandioCalculatorBreakdown" class="grandio-fin-breakdown"></div><button id="grandioCalculatorCopy" class="grandio-fin-copy" type="button">نسخ الإجمالي</button><p class="grandio-fin-note">الحاسبة مؤقتة: لا تحفظ العمليات ولا ترحّلها إلى سجلات النظام. النسب قابلة للتعديل.</p></section>
+   </div>
+  </section>
+ </div>
 </div>
 <script id="grandioCalculatorScript">
 (()=>{
  'use strict';
- const root=document.getElementById('grandioCalculatorRoot'),fab=document.getElementById('grandioCalculatorFab'),panel=document.getElementById('grandioCalculatorPanel'),keys=document.getElementById('grandioCalculatorKeys'),expressionEl=document.getElementById('grandioCalculatorExpression'),valueEl=document.getElementById('grandioCalculatorValue'),statusEl=document.getElementById('grandioCalculatorStatus'),historyEl=document.getElementById('grandioCalculatorHistory');
- if(!root||!fab||!panel||root.dataset.ready==='1')return;root.dataset.ready='1';
- let current='0',lastExpression='',justCalculated=false,history=[];
- const fmt=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:8,useGrouping:true}).format(n);
- const shown=s=>String(s).replace(/\*/g,' × ').replace(/\//g,' ÷ ').replace(/-/g,' − ').replace(/\+/g,' + ').replace(/\s+/g,' ').trim();
- function evaluate(source){
-  const normalized=String(source).replace(/,/g,'').replace(/[×]/g,'*').replace(/[÷]/g,'/').replace(/[−]/g,'-').replace(/\s+/g,'');
-  if(!normalized||/[^0-9.+*/()%\-]/.test(normalized))throw new Error('صيغة غير صحيحة');
-  const tokens=normalized.match(/(?:\d+(?:\.\d*)?|\.\d+)|[()+\-*/%]/g)||[];
-  if(tokens.join('')!==normalized)throw new Error('صيغة غير صحيحة');
-  let i=0;
-  function expression(){let value=term();while(tokens[i]==='+'||tokens[i]==='-'){const op=tokens[i++],rhs=term();value=op==='+'?value+rhs:value-rhs}return value}
-  function term(){let value=unary();while(tokens[i]==='*'||tokens[i]==='/'){const op=tokens[i++],rhs=unary();if(op==='/'&&rhs===0)throw new Error('لا يمكن القسمة على صفر');value=op==='*'?value*rhs:value/rhs}return value}
-  function unary(){if(tokens[i]==='+'){i++;return unary()}if(tokens[i]==='-'){i++;return-unary()}return primary()}
-  function primary(){let value;if(tokens[i]==='('){i++;value=expression();if(tokens[i]!==')')throw new Error('أغلق القوس');i++}else{const token=tokens[i++];if(token===undefined||!/^\d+(?:\.\d*)?$|^\.\d+$/.test(token))throw new Error('أدخل رقمًا');value=Number(token)}while(tokens[i]==='%'){value/=100;i++}return value}
-  const value=expression();if(i!==tokens.length||!Number.isFinite(value)||Math.abs(value)>1e18)throw new Error('النتيجة خارج النطاق');return value
- }
- function preview(){try{return fmt(evaluate(current))}catch(_){return current==='0'?'0':'—'}}
- function render(){const hasInput=current!=='0'||justCalculated;expressionEl.textContent=justCalculated&&lastExpression?`${shown(lastExpression)} =`:hasInput?shown(current):'ابدأ الحساب';valueEl.textContent=justCalculated?fmt(Number(current)):preview();historyEl.replaceChildren();if(!history.length){const empty=document.createElement('div');empty.className='grandio-calc-history-empty';empty.textContent='لا توجد عمليات بعد';historyEl.appendChild(empty)}else{for(const item of history){const row=document.createElement('div');row.className='grandio-calc-history-item';const exp=document.createElement('span');exp.textContent=item.expression;const result=document.createElement('b');result.textContent=item.result;row.append(exp,result);historyEl.appendChild(row)}}}
- function status(text=''){statusEl.textContent=text}
- function appendDigit(ch){status();if(justCalculated){current='0';lastExpression='';justCalculated=false}if(ch==='.'){const fragment=current.split(/[+\-*/()%()]/).pop()||'';if(fragment.includes('.'))return;if(fragment==='')current+='0'}if(current==='0'&&ch!=='.')current=ch;else current+=ch;render()}
- function appendOperator(op){status();if(justCalculated)justCalculated=false;const last=current.slice(-1);if(/[+\-*/]$/.test(current)){if(op==='-'&&/[*/]$/.test(current))current+=op;else current=current.slice(0,-1)+op}else if(last==='('&&op!=='-')return;else current+=op;render()}
- function appendPercent(){status();if(justCalculated)justCalculated=false;if(/[0-9.)]$/.test(current))current+='%';render()}
- function clear(){current='0';lastExpression='';justCalculated=false;status();render()}
- function backspace(){status();if(justCalculated){current=String(Number(current));justCalculated=false;lastExpression=''}current=current.length>1?current.slice(0,-1):'0';if(current==='-'||current==='')current='0';render()}
- function calculate(){try{const value=evaluate(current);lastExpression=current;history.unshift({expression:shown(current),result:fmt(value)});history=history.slice(0,5);current=String(value);justCalculated=true;status();render()}catch(e){status(e.message||'تعذر حساب العملية')}}
- function resultRaw(){return String(justCalculated?Number(current):evaluate(current))}
- function open(){if(root.hidden)return;panel.hidden=false;root.classList.add('is-open');fab.setAttribute('aria-expanded','true');fab.setAttribute('aria-label','الحاسبة السريعة مفتوحة');status();render()}
- function close(){panel.hidden=true;root.classList.remove('is-open');fab.setAttribute('aria-expanded','false');fab.setAttribute('aria-label','فتح الحاسبة السريعة')}
+ const root=document.getElementById('grandioCalculatorRoot'),fab=document.getElementById('grandioCalculatorFab'),backdrop=document.getElementById('grandioCalculatorBackdrop'),panel=document.getElementById('grandioCalculatorPanel'),amountInput=document.getElementById('grandioCalculatorAmount'),rateInput=document.getElementById('grandioCalculatorRate'),rateRow=document.getElementById('grandioCalculatorRateRow'),rateLabel=document.getElementById('grandioCalculatorRateLabel'),amountLabel=document.getElementById('grandioCalculatorAmountLabel'),amountUnit=document.getElementById('grandioCalculatorAmountUnit'),standardKeys=document.getElementById('grandioCalculatorStandardKeys'),numberKeys=document.getElementById('grandioCalculatorNumberKeys'),statusEl=document.getElementById('grandioCalculatorStatus'),resultEl=document.getElementById('grandioCalculatorResult'),resultCaption=document.getElementById('grandioCalculatorResultCaption'),resultUnit=document.getElementById('grandioCalculatorResultUnit'),summaryUnit=document.getElementById('grandioCalculatorSummaryUnit'),breakdown=document.getElementById('grandioCalculatorBreakdown'),copyButton=document.getElementById('grandioCalculatorCopy');
+ if(!root||!fab||!backdrop||!panel||root.dataset.ready==='1')return;root.dataset.ready='1';
+ let mode='tax',activeField='amount',standardExpression='0',currentResult=0,resultValid=true;
+ const rates={tax:'15',discount:'10',percentage:'15'};
+ const arabicDigits='٠١٢٣٤٥٦٧٨٩',persianDigits='۰۱۲۳۴۵۶۷۸۹';
+ const normalizeDigits=value=>String(value??'').replace(/[٠-٩]/g,d=>String(arabicDigits.indexOf(d))).replace(/[۰-۹]/g,d=>String(persianDigits.indexOf(d))).replace(/٫/g,'.').replace(/٬/g,',');
+ const formatNumber=value=>new Intl.NumberFormat('en-US',{maximumFractionDigits:2,useGrouping:true}).format(value);
+ const showExpression=value=>String(value).replace(/,/g,'').replace(/\*/g,' × ').replace(/\//g,' ÷ ').replace(/-/g,' − ').replace(/\+/g,' + ').replace(/\s+/g,' ').trim();
+ function parseNumber(raw){const text=normalizeDigits(raw).replace(/[\s,]/g,'');if(text==='')return 0;if(!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(text))return null;const n=Number(text);return Number.isFinite(n)&&n>=0?n:null}
+ function evaluateExpression(source){const normalized=normalizeDigits(source).replace(/,/g,'').replace(/[×]/g,'*').replace(/[÷]/g,'/').replace(/[−]/g,'-').replace(/\s+/g,'');if(!normalized||/[^0-9.+*/()%\-]/.test(normalized))throw new Error('أدخل عملية صحيحة');const tokens=normalized.match(/(?:\d+(?:\.\d*)?|\.\d+)|[()+\-*/%]/g)||[];if(tokens.join('')!==normalized)throw new Error('صيغة العملية غير مكتملة');let i=0;function expr(){let v=term();while(tokens[i]==='+'||tokens[i]==='-'){const op=tokens[i++],r=term();v=op==='+'?v+r:v-r}return v}function term(){let v=unary();while(tokens[i]==='*'||tokens[i]==='/'){const op=tokens[i++],r=unary();if(op==='/'&&r===0)throw new Error('لا يمكن القسمة على صفر');v=op==='*'?v*r:v/r}return v}function unary(){if(tokens[i]==='+'){i++;return unary()}if(tokens[i]==='-'){i++;return-unary()}return primary()}function primary(){let v;if(tokens[i]==='('){i++;v=expr();if(tokens[i]!==')')throw new Error('أغلق القوس');i++}else{const t=tokens[i++];if(t===undefined||!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(t))throw new Error('أدخل رقمًا');v=Number(t)}while(tokens[i]==='%'){v/=100;i++}return v}const result=expr();if(i!==tokens.length||!Number.isFinite(result)||Math.abs(result)>1e18)throw new Error('النتيجة خارج النطاق');return result}
+ function setStatus(text=''){statusEl.textContent=text}
+ function setRows(rows){breakdown.replaceChildren();for(const row of rows){const line=document.createElement('div');line.className='grandio-fin-row'+(row.total?' total':'');const label=document.createElement('span');label.textContent=row.label;const value=document.createElement('strong');value.textContent=row.value;line.append(label,value);breakdown.appendChild(line)}}
+ function invalidResult(message){resultValid=false;currentResult=0;resultEl.textContent='—';resultUnit.hidden=mode==='standard';setRows([]);setStatus(message)}
+ function render(){resultValid=true;setStatus('');const amount=parseNumber(amountInput.value),rate=parseNumber(rateInput.value);if(mode==='standard'){const expression=amountInput.value.trim()||'0';try{const value=evaluateExpression(expression);if(!Number.isFinite(value))throw new Error('النتيجة غير صالحة');currentResult=value;resultEl.textContent=formatNumber(value);resultCaption.textContent='ناتج العملية';resultUnit.hidden=true;summaryUnit.textContent='حاسبة أساسية';copyButton.textContent='نسخ النتيجة';setRows([{label:'العملية',value:showExpression(expression)},{label:'الحالة',value:'تم الحساب'}]);}catch(error){invalidResult(error.message||'أدخل عملية صحيحة');resultCaption.textContent='ناتج العملية';summaryUnit.textContent='حاسبة أساسية';copyButton.textContent='نسخ النتيجة'}return}if(amount===null){invalidResult('أدخل مبلغًا صحيحًا');return}if(rate===null){invalidResult('أدخل نسبة صحيحة');return}let primary=0,rows=[];resultUnit.hidden=false;summaryUnit.textContent='تقدير فوري';if(mode==='tax'){const tax=amount*rate/100;primary=amount+tax;resultCaption.textContent='الإجمالي بعد الضريبة';copyButton.textContent='نسخ الإجمالي';rows=[{label:'المبلغ قبل الضريبة',value:formatNumber(amount)},{label:'نسبة الضريبة',value:formatNumber(rate)+'%'},{label:'قيمة الضريبة',value:formatNumber(tax)},{label:'الإجمالي',value:formatNumber(primary),total:true}]}else if(mode==='discount'){const discount=amount*rate/100;primary=amount-discount;resultCaption.textContent='المبلغ بعد الخصم';copyButton.textContent='نسخ الصافي';rows=[{label:'المبلغ الأصلي',value:formatNumber(amount)},{label:'نسبة الخصم',value:formatNumber(rate)+'%'},{label:'قيمة الخصم',value:formatNumber(discount)},{label:'الصافي بعد الخصم',value:formatNumber(primary),total:true}]}else{primary=amount*rate/100;resultCaption.textContent='قيمة النسبة';copyButton.textContent='نسخ النتيجة';rows=[{label:'المبلغ الأساسي',value:formatNumber(amount)},{label:'النسبة',value:formatNumber(rate)+'%'},{label:'قيمة النسبة',value:formatNumber(primary),total:true}]}if(!Number.isFinite(primary)){invalidResult('النتيجة خارج النطاق');return}currentResult=primary;resultEl.textContent=formatNumber(primary);setRows(rows)}
+ function updateMode(next){if(!['standard','tax','discount','percentage'].includes(next))return;const previousMode=mode;if(previousMode==='standard'){standardExpression=amountInput.value;if(next!=='standard'){try{amountInput.value=String(evaluateExpression(standardExpression))}catch(_){amountInput.value='0'}}}mode=next;activeField='amount';for(const tab of document.querySelectorAll('[data-calc-mode]'))tab.setAttribute('aria-selected',String(tab.dataset.calcMode===mode));const standard=mode==='standard';rateRow.hidden=standard;standardKeys.hidden=!standard;numberKeys.hidden=standard;amountUnit.hidden=standard;amountInput.setAttribute('aria-label',standard?'العملية الحسابية':'المبلغ');if(standard){amountLabel.textContent='اكتب العملية';amountInput.value=standardExpression||'0';resultCaption.textContent='ناتج العملية'}else{if(mode==='tax'){amountLabel.textContent='المبلغ قبل الضريبة';rateLabel.textContent='نسبة الضريبة';rateInput.setAttribute('aria-label','نسبة الضريبة')}else if(mode==='discount'){amountLabel.textContent='قيمة الفاتورة';rateLabel.textContent='نسبة الخصم';rateInput.setAttribute('aria-label','نسبة الخصم')}else{amountLabel.textContent='المبلغ الأساسي';rateLabel.textContent='النسبة';rateInput.setAttribute('aria-label','النسبة')}rateInput.value=rates[mode]||'15';if(!amountInput.value||mode==='tax'&&amountInput.value==='0'&&standardExpression!=='0')amountInput.value='0'}render()}
+ function targetInput(){return mode==='standard'?amountInput:activeField==='rate'?rateInput:amountInput}
+ function appendKey(key){const input=targetInput();let value=input.value||'0';if(mode==='standard'&&['+','-','*','/'].includes(key)){if(/[+\-*/]$/.test(value))value=value.slice(0,-1)+key;else value+=key}else if(key==='00'){value=value==='0'?'0':value+'00'}else if(key==='.'){if(!value.split(/[+\-*/()%()]/).pop().includes('.'))value+=(value.split(/[+\-*/()%()]/).pop()?'':mode==='standard'?'0':'0')+'.'}else if(key==='%'){if(mode==='standard'&&/[0-9.)]$/.test(value))value+='%'}else if(/^\d$/.test(key)){const part=value.split(/[+\-*/()%()]/).pop();if(value==='0'||part==='0'&&value===part)value=key;else value+=key}else return;input.value=value;if(mode==='standard')standardExpression=value;else if(input===rateInput)rates[mode]=value;render()}
+ function clearEntry(){const input=targetInput();input.value='0';if(mode==='standard')standardExpression='0';else if(input===rateInput)rates[mode]='0';render()}
+ function backspace(){const input=targetInput();input.value=input.value.length>1?input.value.slice(0,-1):'0';if(input.value==='-'||input.value==='')input.value='0';if(mode==='standard')standardExpression=input.value;else if(input===rateInput)rates[mode]=input.value;render()}
+ function calculateStandard(){if(mode!=='standard'){render();return}try{const result=evaluateExpression(amountInput.value||'0');amountInput.value=String(result);standardExpression=amountInput.value;render()}catch(error){setStatus(error.message||'تعذر حساب العملية')}}
+ function openCalculator(){if(root.hidden)return;backdrop.hidden=false;root.classList.add('is-open');fab.setAttribute('aria-expanded','true');setStatus('');render();panel.focus()}
+ function closeCalculator(){backdrop.hidden=true;root.classList.remove('is-open');fab.setAttribute('aria-expanded','false');fab.setAttribute('aria-label','فتح الحاسبة المالية')}
  function isAuthenticated(){try{return typeof authCurrent!=='undefined'&&!!authCurrent}catch(_){return false}}
- function syncAuth(){const allowed=isAuthenticated();root.hidden=!allowed;if(!allowed)close()}
- fab.addEventListener('click',()=>panel.hidden?open():close());document.getElementById('grandioCalculatorClose').addEventListener('click',()=>{close();fab.focus()});
- keys.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const action=button.dataset.calcAction,key=button.dataset.calcKey;if(action==='clear')clear();else if(action==='backspace')backspace();else if(action==='equals')calculate();else if(key==='%')appendPercent();else if(key&&/^\d$/.test(key)||key==='.')appendDigit(key);else if(key)appendOperator(key)});
- document.getElementById('grandioCalculatorCopy').addEventListener('click',async()=>{try{const raw=resultRaw();let copied=false;if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(raw);copied=true}else{const field=document.createElement('textarea');field.value=raw;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();copied=document.execCommand('copy');field.remove()}status(copied?'تم نسخ النتيجة':'تعذر النسخ؛ حدّد النتيجة يدويًا')}catch(e){status(e.message||'أدخل عملية صحيحة أولًا')}});
- document.getElementById('grandioCalculatorClearHistory').addEventListener('click',()=>{history=[];status('تم مسح سجل الحاسبة المؤقت');render()});
- document.addEventListener('keydown',event=>{if(root.hidden||panel.hidden)return;const target=event.target;if(target&&(target.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)))return;const key=event.key;if(/^\d$/.test(key)){appendDigit(key);return}if(key==='.'){appendDigit('.');return}if(['+','-','*','/'].includes(key)){appendOperator(key);return}if(key==='%'){appendPercent();return}if(key==='Enter'||key==='='){event.preventDefault();calculate();return}if(key==='Backspace'){event.preventDefault();backspace();return}if(key==='Escape'){close();fab.focus()}});
- const observer=new MutationObserver(syncAuth);for(const id of ['authGate','welcomeScreen']){const node=document.getElementById(id);if(node)observer.observe(node,{attributes:true,attributeFilter:['style','class','hidden']})}window.addEventListener('focus',syncAuth);syncAuth();render();
+ function syncAuth(){const allowed=isAuthenticated();root.hidden=!allowed;if(!allowed)closeCalculator()}
+ function copyResult(){if(!resultValid){setStatus('صحّح المدخلات قبل نسخ النتيجة');return}const raw=formatNumber(currentResult).replace(/,/g,'');if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(raw).then(()=>setStatus('تم نسخ النتيجة')).catch(()=>fallbackCopy(raw))}else fallbackCopy(raw)}
+ function fallbackCopy(text){const field=document.createElement('textarea');field.value=text;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();const ok=document.execCommand('copy');field.remove();setStatus(ok?'تم نسخ النتيجة':'تعذر النسخ؛ حدّد النتيجة يدويًا')}
+ fab.addEventListener('click',openCalculator);document.getElementById('grandioCalculatorClose').addEventListener('click',()=>{closeCalculator();fab.focus()});backdrop.addEventListener('click',event=>{if(event.target===backdrop){closeCalculator();fab.focus()}});
+ document.querySelectorAll('[data-calc-mode]').forEach(tab=>tab.addEventListener('click',()=>updateMode(tab.dataset.calcMode)));
+ amountInput.addEventListener('focus',()=>{activeField='amount'});rateInput.addEventListener('focus',()=>{activeField='rate'});amountInput.addEventListener('input',()=>{if(mode==='standard')standardExpression=amountInput.value;render()});rateInput.addEventListener('input',()=>{rates[mode]=rateInput.value;render()});
+ root.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const action=button.dataset.calcAction,key=button.dataset.calcKey;if(action==='clear')clearEntry();else if(action==='backspace')backspace();else if(action==='equals')calculateStandard();else if(key)appendKey(key)});
+ copyButton.addEventListener('click',copyResult);
+ document.addEventListener('keydown',event=>{if(root.hidden||backdrop.hidden)return;if(event.key==='Escape'){event.preventDefault();closeCalculator();fab.focus();return}if(event.key==='Enter'){event.preventDefault();if(mode==='standard')calculateStandard();else render();return}const target=event.target;if(target&&(target.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)))return;if(/^\d$/.test(event.key)){appendKey(event.key);return}if(event.key==='.'||event.key==='Decimal'){appendKey('.');return}if(['+','-','*','/','%'].includes(event.key)){appendKey(event.key);return}if(event.key==='='){event.preventDefault();calculateStandard();return}if(event.key==='Backspace'){event.preventDefault();backspace()}});
+ const observer=new MutationObserver(syncAuth);for(const id of ['authGate','welcomeScreen']){const node=document.getElementById(id);if(node)observer.observe(node,{attributes:true,attributeFilter:['style','class','hidden']})}window.addEventListener('focus',syncAuth);syncAuth();updateMode(mode);
 })();
 </script>
 </body>
