@@ -144,6 +144,22 @@
 @media(max-width:700px){.close-progress-grid{grid-template-columns:1fr}}
 
 .backup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.backup-status-box{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px;border:1px solid #dce4e9;border-radius:12px;background:#fbfcfd}.backup-status-main{min-width:0}.backup-status-main strong{display:block;color:#17324b;font-size:14px}.backup-status-main p{margin:6px 0 0;color:#667a8a;font-size:12px;line-height:1.7}.backup-status-pill{display:inline-flex;white-space:nowrap;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}.backup-status-pill.fresh{background:#d9f2e8;color:#116149}.backup-status-pill.due{background:#fff0ca;color:#795314}.backup-status-pill.missing{background:#ffe3dc;color:#9b3f25}.backup-preview{margin-top:14px;padding:14px;border:1px solid #d8e0e5;border-radius:12px;background:#f8fafb}.backup-preview h4{margin:0 0 10px;color:#17324b}.backup-preview p{margin:6px 0;color:#5d7182;font-size:12px;line-height:1.7}.backup-preview-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.backup-dashboard-actions{display:flex;gap:8px;flex-wrap:wrap}.backup-local-warning{margin-top:12px}.backup-grid .panel{margin:0}@media(max-width:700px){.backup-grid{grid-template-columns:1fr}.backup-status-box{flex-direction:column;align-items:flex-start}.backup-dashboard-actions .btn{flex:1}}
+
+.dashboard-hero{position:relative;overflow:hidden;isolation:isolate;min-height:104px}
+.dashboard-hero-copy,.dashboard-hero>.hero-actions{position:relative;z-index:1}
+.grandio-motion-path{position:absolute;left:50%;top:50%;width:min(29vw,340px);height:76px;transform:translate(-50%,-50%);opacity:.64;pointer-events:none;z-index:0}
+.grandio-motion-path svg{display:block;width:100%;height:100%;overflow:visible}
+.grandio-route-base{fill:none;stroke:rgba(232,189,91,.23);stroke-width:1.6}
+.grandio-route-flow{fill:none;stroke:#e8bd5b;stroke-width:1.8;stroke-linecap:round;stroke-dasharray:3 11;animation:grandioRouteFlow 2.8s linear infinite}
+.grandio-route-node circle{fill:#10243b;stroke:rgba(232,189,91,.78);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:grandioNodePulse 3.6s ease-in-out infinite}
+.grandio-route-node path{fill:none;stroke:#f3d57e;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
+.cafe-node circle{animation-delay:.8s}.ledger-node circle{animation-delay:1.6s}
+.grandio-route-dot{fill:#fff0b5;filter:drop-shadow(0 0 4px #e8bd5b);opacity:.9}
+@keyframes grandioRouteFlow{to{stroke-dashoffset:-56}}
+@keyframes grandioNodePulse{0%,100%{transform:scale(.94);filter:drop-shadow(0 0 0 rgba(232,189,91,0))}48%{transform:scale(1.09);filter:drop-shadow(0 0 5px rgba(232,189,91,.46))}}
+@media(max-width:1120px){.grandio-motion-path{width:220px;opacity:.38;left:51%}}
+@media(max-width:900px){.grandio-motion-path{display:none}}
+@media(prefers-reduced-motion:reduce){.grandio-route-flow,.grandio-route-node circle{animation:none!important}.grandio-route-dot{display:none!important}}
 </style>
 </head>
 <body>
@@ -189,7 +205,7 @@
  </aside>
  <main class="main">
   <section id="dashboard" class="view active manager-simple">
-   <div class="hero"><div><span class="eyebrow">GRANDIO · FINANCE</span><h2>لوحة المدير العام</h2><p>ملخص الإيرادات والمصروفات والإقفال للفترة المختارة.</p></div><div class="hero-actions"><button class="btn gold" type="button" onclick="startDailyEntry()">تسجيل اليوم</button><button class="btn cyan" onclick="renderAll()">تحديث الملخص</button><button class="btn" onclick="window.print()">طباعة الملخص</button></div></div>
+   <div class="hero dashboard-hero"><div class="dashboard-hero-copy"><span class="eyebrow">GRANDIO · FINANCE</span><h2>لوحة المدير العام</h2><p>ملخص الإيرادات والمصروفات والإقفال للفترة المختارة.</p></div><div class="hero-actions"><button class="btn gold" type="button" onclick="startDailyEntry()">تسجيل اليوم</button><button class="btn cyan" onclick="renderAll()">تحديث الملخص</button><button class="btn" onclick="window.print()">طباعة الملخص</button></div><div class="grandio-motion-path" aria-hidden="true"><svg viewBox="0 0 360 82" role="presentation" focusable="false"><path class="grandio-route-base" d="M42 41 C112 8 248 74 318 41"/><path id="grandioRouteFlow" class="grandio-route-flow" d="M42 41 C112 8 248 74 318 41"/><g class="grandio-route-node hotel-node" transform="translate(42 41)"><circle r="17"/><path d="M-8 7V-4l8-6 8 6V7M-4 7V1h8v6M-3-3h1M2-3h1"/></g><g class="grandio-route-node cafe-node" transform="translate(180 41)"><circle r="17"/><path d="M-7-4h11v6a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5v-6ZM4-2h3a3 3 0 0 1 0 6H4M-3-8q-2 2 0 3M1-8q-2 2 0 3"/></g><g class="grandio-route-node ledger-node" transform="translate(318 41)"><circle r="17"/><path d="M-6-9h12v18h-12zM-3-4h6M-3 0h6M-3 4h4"/></g><circle class="grandio-route-dot" r="3.5"><animateMotion dur="6.5s" repeatCount="indefinite" path="M42 41 C112 8 248 74 318 41"/></circle></svg></div></div>
    <div class="filters" style="margin-top:14px"><label>الشهر <input class="input" id="dashMonth" type="month" onchange="renderDashboard()"></label><label>نطاق الفندق <select class="input" id="scopeBranch" onchange="renderAll()"><option value="*">كل الفنادق</option></select></label></div>
    <div class="panel" id="dashboardReceivableAlert"><div class="section-head"><div><h3 id="dashboardAlertTitle">تنبيهات الذمم</h3><p class="hint" id="dashboardAlertText">جارٍ تحديث حالة الاستحقاقات.</p></div><button class="btn red" onclick="showView('alerts')">عرض التنبيهات</button></div></div>
    <div class="panel backup-dashboard-card"><div class="section-head"><div><h3>النسخة الاحتياطية</h3><p class="hint" id="dashboardBackupText">جارٍ التحقق من آخر نسخة.</p></div><span class="backup-status-pill missing" id="dashboardBackupBadge">لم يُطلب</span></div><div class="backup-dashboard-actions"><button class="btn gold" type="button" onclick="downloadBackup()">تنزيل نسخة الآن</button><button class="btn" type="button" onclick="showView('backup')">إدارة النسخ والاستعادة</button></div></div>
