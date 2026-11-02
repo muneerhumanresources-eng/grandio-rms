@@ -876,7 +876,7 @@ body{background:radial-gradient(ellipse at 18% 0%,#684454 0,#302433 38%,#1f1924 
 const APP_KEY='TAWHEED_SALES_REVENUE_LOCAL_V1';
 const BACKUP_FORMAT='TAWHEED-SALES-REVENUE-BACKUP';
 const $=id=>document.getElementById(id);
-const AUTH_KEY='TAWHEED_SALES_REVENUE_AUTH_V1',AUTH_SESSION_KEY='TAWHEED_SALES_REVENUE_SESSION_V1',AUTH_ITERATIONS=120000;
+const AUTH_KEY='TAWHEED_SALES_REVENUE_AUTH_V1',AUTH_SESSION_KEY='TAWHEED_SALES_REVENUE_SESSION_V2',AUTH_ITERATIONS=120000;
 const AUTH_ROLES=[{id:'superadmin',name:'السوبر ادمن'},{id:'manager',name:'المدير العام'},{id:'supervisor',name:'المشرف'}];
 	const AUTH_CREDENTIALS_REVISION_KEY='TAWHEED_SALES_REVENUE_AUTH_CREDENTIALS_REVISION_V1',AUTH_CREDENTIALS_REVISION='20261101-r1';
 	const TAB_LOCK_KEY='TAWHEED_SALES_REVENUE_TAB_LOCK_V1',TAB_LOCK_TTL=25000,TAB_LOCK_ID='TAB-'+Date.now()+'-'+Math.random().toString(36).slice(2,9);let tabLockOwned=false,tabConflict=false,tabLockTimer=null;
@@ -899,7 +899,7 @@ function showWelcome(){pendingAuthMode=pendingAuthMode||'login';$('accountAdminM
 	function startWelcome(){if(authCurrent){unlockApp();return}showAuthMode(pendingAuthMode||'login')}
 	function returnToWelcome(){showAuthMode(pendingAuthMode||'login')}
 	function applyConfiguredAuthCredentials(){try{if(localStorage.getItem(AUTH_CREDENTIALS_REVISION_KEY)===AUTH_CREDENTIALS_REVISION)return;const users=authUsers();try{sessionStorage.removeItem(AUTH_SESSION_KEY)}catch(_){}if(users.length){localStorage.setItem(AUTH_CREDENTIALS_REVISION_KEY,AUTH_CREDENTIALS_REVISION)}}catch(e){console.error('تعذر تحديث إصدار بيانات الدخول',e)}}
-	function bootAuth(){applyConfiguredAuthCredentials();const users=authUsers();if(!users.length){pendingAuthMode='setup';showWelcome();return}let session=null;try{session=JSON.parse(sessionStorage.getItem(AUTH_SESSION_KEY)||'null')}catch(_){}const user=session&&users.find(x=>x.id===session.id);if(user){authCurrent=user;unlockApp()}else{pendingAuthMode='login';showAuthMode('login')}}
+	function bootAuth(){try{sessionStorage.removeItem('TAWHEED_SALES_REVENUE_SESSION_V1')}catch(_){}applyConfiguredAuthCredentials();const users=authUsers();if(!users.length){pendingAuthMode='setup';showWelcome();return}let session=null;try{session=JSON.parse(sessionStorage.getItem(AUTH_SESSION_KEY)||'null')}catch(_){}const user=session&&users.find(x=>x.id===session.id);if(user){authCurrent=user;unlockApp()}else{pendingAuthMode='login';showAuthMode('login')}}
 	const AUTO_LOCK_MS=15*60*1000;let inactivityTimer=null;
 	function clearAutoLockTimer(){if(inactivityTimer){clearTimeout(inactivityTimer);inactivityTimer=null}}
 	function armAutoLock(){clearAutoLockTimer();if(authCurrent)inactivityTimer=setTimeout(()=>{if(authCurrent)lockApp(true)},AUTO_LOCK_MS)}
