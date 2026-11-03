@@ -602,7 +602,7 @@ body{background:radial-gradient(ellipse at 18% 0%,#684454 0,#302433 38%,#1f1924 
 #dailyEntry .daily-step-pane .daily-review-list{margin-bottom:22px}
 #dailyEntry .daily-entry-actions{position:sticky;bottom:0;z-index:10;padding:14px;border-radius:18px;background:#241825ee;backdrop-filter:blur(10px)}
 #dailyEntry .daily-entry-actions:before{content:'بعد تعبئة الخانات، راجع البيانات ثم احفظ التسجيل من هنا';display:block;color:#bdebd7;font-size:12px;margin-bottom:8px}
-</style><style id="grandio-revenue-card-fix-css">#dailyEntryPane1>.daily-revenue-section-title{display:block;margin:20px 22px 8px;padding-top:16px;border-top:1px solid #d8c59a40;color:#f0d88c;font-size:17px;font-weight:700}#dailyEntryPane1>.daily-step-pane{display:block!important}</style><style id="grandio-hotel-cafe-fields-css">#dailyEntry .daily-cafe-field-hidden{display:none!important}.daily-registration-unit-note{display:block;margin-top:8px;color:#bdebd7;font-size:12px}</style></head>
+</style><style id="grandio-revenue-card-fix-css">#dailyEntryPane1>.daily-revenue-section-title{display:block;margin:20px 22px 8px;padding-top:16px;border-top:1px solid #d8c59a40;color:#f0d88c;font-size:17px;font-weight:700}#dailyEntryPane1>.daily-step-pane{display:block!important}</style><style id="grandio-hotel-cafe-fields-css">#dailyEntry .daily-cafe-field-hidden{display:none!important}.daily-registration-unit-note{display:block;margin-top:8px;color:#bdebd7;font-size:12px}</style><style id="grandio-abu-ammar-preview-css">#abuAmmarExpenses .hero h2{color:#f0d88c}#abuAmmarExpenses .panel{margin-top:18px}</style></head>
 <body>
 <div class="shell">
 <header class="topbar">
@@ -621,7 +621,7 @@ body{background:radial-gradient(ellipse at 18% 0%,#684454 0,#302433 38%,#1f1924 
   <button class="nav-btn active" data-view="dashboard" onclick="showView('dashboard')"><span>⌂</span>الرئيسية</button>
   <div class="nav-group-label">العمل اليومي</div>
   <button class="nav-btn" data-view="dailyEntry" onclick="showView('dailyEntry')"><span>＋</span>تسجيل اليوم</button>
-  <button class="nav-btn" data-view="closeProgress" onclick="showView('closeProgress')"><span>✓</span>متابعة الإقفال</button>
+  <button class="nav-btn" data-view="abuAmmarExpenses" onclick="showView('abuAmmarExpenses')"><span>▤</span>مصروفات أبو عمار</button><button class="nav-btn" data-view="closeProgress" onclick="showView('closeProgress')"><span>✓</span>متابعة الإقفال</button>
   <div class="nav-group-label">التقارير والمتابعة</div>
   <button class="nav-btn" data-view="reports" onclick="showView('reports')"><span>▤</span>التقارير</button>
   <button class="nav-btn" data-view="monthlyClose" onclick="showView('monthlyClose')"><span>▣</span>الإقفال الشهري</button>
@@ -691,7 +691,8 @@ body{background:radial-gradient(ellipse at 18% 0%,#684454 0,#302433 38%,#1f1924 
     <div class="daily-entry-actions"><button class="btn" id="dailyEntryBack" type="button" onclick="dailyEntryBack()" style="display:none">رجوع</button><span></span><button class="btn gold" id="dailyEntryNext" type="button" onclick="dailyEntryNext()">التالي</button><button class="btn gold" id="dailyEntrySave" type="button" onclick="saveDailyEntry()" style="display:none">حفظ تسجيل اليوم</button></div>
    </div>
   </section>
-  <section id="closeProgress" class="view">
+  <section id="abuAmmarExpenses" class="view manager-simple"><div class="hero"><div><span class="eyebrow">GRANDIO · ABU AMMAR EXPENSES</span><h2>مصروفات أبو عمار</h2><p>سجل مستقل لمصروفات أبو عمار دون خلطها بالمصروفات المباشرة للفندق أو الكافيه.</p></div><div class="hero-actions"><button class="btn" type="button" onclick="showView('dailyEntry')">العودة إلى تسجيل اليوم</button></div></div><div class="panel"><h3>مصروفات أبو عمار</h3><p class="hint">يمكن لاحقًا إضافة التاريخ والبيان والتصنيف والمبلغ وطريقة الدفع والمرجع والملاحظات.</p><div class="form-grid"><div class="field"><label>التاريخ</label><input class="input" type="date"></div><div class="field"><label>الجهة</label><select class="input"><option>الفندق</option><option>الكافيه</option></select></div><div class="field"><label>بيان المصروف</label><input class="input" placeholder="وصف المصروف"></div><div class="field"><label>المبلغ (ر.س)</label><input class="input" type="number" min="0"></div></div></div></section>
+   <section id="closeProgress" class="view">
    <div class="hero"><div><span class="eyebrow">GRANDIO · DAILY PROGRESS</span><h2>متابعة إقفال اليوم</h2><p>اعرف حالة التسجيل والإقفال لكل فندق وكافيه في التاريخ المحدد.</p></div><div class="hero-actions"><button class="btn cyan" type="button" onclick="renderCloseProgress()">تحديث الحالة</button></div></div>
    <div class="filters"><label>التاريخ<input class="input" id="closeProgressDate" type="date" onchange="renderCloseProgress()"></label><span id="closeProgressPeriod" class="hint"></span></div>
    <div class="kpis"><article class="kpi gold"><small>الفنادق والجهات</small><strong id="closeProgressTotal">0</strong></article><article class="kpi red"><small>لم يُسجل اليوم</small><strong id="closeProgressNotStarted">0</strong></article><article class="kpi"><small>بانتظار الإقفال</small><strong id="closeProgressPending">0</strong></article><article class="kpi gold"><small>بانتظار الاعتماد</small><strong id="closeProgressAwaitingApproval">0</strong></article><article class="kpi green"><small>معتمد</small><strong id="closeProgressApproved">0</strong></article></div>
