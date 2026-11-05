@@ -628,7 +628,7 @@ body{background:radial-gradient(ellipse at 18% 0%,#684454 0,#302433 38%,#1f1924 
   <button class="nav-btn active" data-view="dashboard" onclick="showView('dashboard')"><span>⌂</span>الرئيسية</button>
   <div class="nav-group-label">العمل اليومي</div>
   <button class="nav-btn" data-view="dailyEntry" onclick="showView('dailyEntry')"><span>＋</span>تسجيل اليوم</button>
-  <button class="nav-btn" data-view="abuAmmarExpenses" onclick="showView('abuAmmarExpenses');renderAbuAmmarExpenses()"><span>▤</span>مصروفات أبو عمار</button><button class="nav-btn" data-view="utilityBills" onclick="showView('utilityBills');renderUtilityBills()"><span>▣</span>سداد فواتير الكهرباء والمياه</button><button class="nav-btn" data-view="closeProgress" onclick="showView('closeProgress')"><span>✓</span>متابعة الإقفال</button>
+  <button class="nav-btn" data-view="abuAmmarExpenses" onclick="showView('abuAmmarExpenses');fillBranchSelect('abuAmmarBranch');fillCafeSelect('abuAmmarBranch','abuAmmarCafe');renderAbuAmmarExpenses()"><span>▤</span>مصروفات أبو عمار</button><button class="nav-btn" data-view="utilityBills" onclick="showView('utilityBills');renderUtilityBills()"><span>▣</span>سداد فواتير الكهرباء والمياه</button><button class="nav-btn" data-view="closeProgress" onclick="showView('closeProgress')"><span>✓</span>متابعة الإقفال</button>
   <div class="nav-group-label">التقارير والمتابعة</div>
   <button class="nav-btn" data-view="reports" onclick="showView('reports')"><span>▤</span>التقارير</button>
   <button class="nav-btn" data-view="monthlyClose" onclick="showView('monthlyClose')"><span>▣</span>الإقفال الشهري</button>
@@ -1518,6 +1518,10 @@ function openApixHr(){document.body.classList.add('grandio-apix-mode');showView(
   };
   window.renderAbuAmmarExpenses=function(){
     if(!ensure()||!$('abuAmmarTableBody')) return;
+    // Refresh the hotel list whenever the screen opens or filters change.
+    const selectedBranch=$('abuAmmarBranch')?.value||'';
+    fillBranchSelect('abuAmmarBranch',selectedBranch);
+    fillCafeSelect('abuAmmarBranch','abuAmmarCafe',$('abuAmmarCafe')?.value||'');
     const from=$('abuAmmarFrom').value;
     const to=$('abuAmmarTo').value;
     const rows=db.abuAmmarExpenses.filter(x=>(!from||x.date>=from)&&(!to||x.date<=to)).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
