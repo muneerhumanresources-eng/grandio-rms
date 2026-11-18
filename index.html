@@ -2416,3 +2416,61 @@ window.exportShopsCsv=()=>{const rows=[['النوع','المحل','المستأ�
  function init(){if(!$('abuUnifiedLedger'))return;if(typeof db==='undefined'){setTimeout(init,250);return}const today=localDate();$('abuUnifiedFrom').value=today.slice(0,7)+'-01';$('abuUnifiedTo').value=today;$('abuUnifiedDate').value=today;branchOptions($('abuUnifiedBranchFilter'),true);branchOptions($('abuUnifiedBranch'),false);cafeOptions();$('abuUnifiedBranch').addEventListener('change',cafeOptions);$('abuUnifiedFrom').addEventListener('change',render);$('abuUnifiedTo').addEventListener('change',render);$('abuUnifiedBranchFilter').addEventListener('change',render);$('abuUnifiedRefresh').addEventListener('click',render);$('abuUnifiedReset').addEventListener('click',reset);$('abuUnifiedForm').addEventListener('submit',save);$('abuUnifiedTable').addEventListener('click',e=>{const v=e.target.closest('[data-ua-voucher]'),ed=e.target.closest('[data-ua-edit]'),del=e.target.closest('[data-ua-delete]'),a=e.target.closest('[data-ua-attachment]');if(v)voucher(v.dataset.uaVoucher);if(a)openAttachment(a.dataset.uaAttachment);if(ed&&typeof window.editExpense==='function')window.editExpense(ed.dataset.uaEdit);if(del&&typeof window.deleteExpense==='function')window.deleteExpense(del.dataset.uaDelete)});if(typeof window.renderExpenses==='function'&&!window.renderExpenses.__abuUnifiedHook){const base=window.renderExpenses;const wrapped=function(){const r=base.apply(this,arguments);if(!$('abuAmmarUnifiedLedger')?.hidden)render();return r};wrapped.__abuUnifiedHook=true;window.renderExpenses=wrapped}render()}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else setTimeout(init,0);
 })();</script>
+
+<!-- Grandio HR payroll name search: UI-only filter; safe limited refresh -->
+<style id="grandio-payroll-name-search-style">
+.grandio-payroll-name-search{display:grid;gap:5px;min-width:210px;flex:1 1 240px}
+.grandio-payroll-name-search label{color:#333;font-size:11px;font-weight:600}
+.grandio-payroll-name-search input{width:100%;min-height:36px;padding:8px 10px;border:1px solid #35516b;border-radius:8px;background:#fff;color:#102a43;font:inherit;font-size:12px}
+.grandio-payroll-search-empty{padding:18px;text-align:center;color:#718396;font-size:11px}
+</style>
+<script id="grandio-payroll-name-search-controller">
+(()=>{
+ 'use strict';
+ if(window.__grandioPayrollNameSearchReady)return;
+ window.__grandioPayrollNameSearchReady=true;
+ const norm=v=>String(v??'').trim().toLocaleLowerCase('ar');
+ const apply=()=>{
+  const root=document.getElementById('hrTabContent');
+  const toolbar=root?.querySelector('.payroll-main-panel .payroll-toolbar');
+  if(!root||!toolbar)return;
+  let field=toolbar.querySelector('.grandio-payroll-name-search');
+  if(!field){
+   field=document.createElement('div');field.className='grandio-payroll-name-search';
+   field.innerHTML='<label for="grandioPayrollNameSearch">بحث باسم الموظف</label><input id="grandioPayrollNameSearch" type="search" autocomplete="off" placeholder="اكتب اسم الموظف..." aria-label="بحث باسم الموظف">';
+   toolbar.insertBefore(field,toolbar.firstChild);
+   const input=field.querySelector('input');input.value=window.grandioPayrollNameSearch||'';
+   input.addEventListener('input',()=>{window.grandioPayrollNameSearch=input.value;applyFilter(root)});
+  }
+  applyFilter(root);
+ };
+ const applyFilter=root=>{
+  const q=norm(window.grandioPayrollNameSearch||'');
+  root.querySelectorAll('.payroll-table tbody tr').forEach(row=>{
+   if(row.querySelector('.hr-empty'))return;
+   const name=row.querySelector('.payroll-employee b')?.textContent||'';
+   row.hidden=!!q&&!norm(name).includes(q);
+  });
+  root.querySelectorAll('.payroll-cards .payroll-card').forEach(card=>{
+   const name=card.querySelector('.payroll-card-head b')?.textContent||'';
+   card.hidden=!!q&&!norm(name).includes(q);
+  });
+  root.querySelectorAll('.payroll-table,.payroll-cards').forEach(container=>{
+   const items=[...container.querySelectorAll('.payroll-table tbody tr,.payroll-card')].filter(x=>!x.querySelector('.hr-empty'));
+   let note=container.parentElement.querySelector(':scope > .grandio-payroll-search-empty');
+   const empty=!!q&&items.length>0&&!items.some(x=>!x.hidden);
+   if(empty){if(!note){note=document.createElement('div');note.className='grandio-payroll-search-empty';container.insertAdjacentElement('afterend',note)}note.textContent='لا توجد رواتب مطابقة لاسم الموظف المدخل.';note.hidden=false}
+   else if(note)note.hidden=true;
+  });
+ };
+ let timer=0;
+ const schedule=()=>{clearTimeout(timer);timer=setTimeout(apply,80)};
+ const start=()=>{
+  const root=document.getElementById('hrTabContent');
+  if(!root)return;
+  new MutationObserver(schedule).observe(root,{childList:true});
+  schedule();
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
