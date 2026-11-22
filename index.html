@@ -2676,5 +2676,5 @@ window.hotelReservationPage=hotelReservationPage;window.renderHotelReservations=
  function updateSecureLogoutState(){const c=document.getElementById('grandioExitConfirm'),b=document.getElementById('grandioExitConfirmButton');if(b)b.disabled=!(exitBackupDownloaded&&c?.checked)}
  function completeSecureLogout(){const c=document.getElementById('grandioExitConfirm');if(!exitBackupDownloaded||!c?.checked){toast('نزّل النسخة وتأكد من حفظها أولاً.');return}exitApproved=true;closeSecureLogout();logout()}
  window.requestSecureLogout=requestSecureLogout;window.closeSecureLogout=closeSecureLogout;window.downloadExitBackup=downloadExitBackup;window.updateSecureLogoutState=updateSecureLogoutState;window.completeSecureLogout=completeSecureLogout;
- window.onbeforeunload=e=>{if(authCurrent&&!exitApproved){e.preventDefault();e.returnValue='';return ''}try{releaseTabLock()}catch(_){}return undefined};
+ window.onbeforeunload=()=>{try{if(typeof appStarted!=='undefined'&&appStarted&&!tabConflict&&typeof persist==='function')persist()}catch(e){console.error('تعذر الحفظ عند تحديث الصفحة',e)}try{releaseTabLock()}catch(_){}};
 })();</script>
