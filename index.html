@@ -2978,7 +2978,7 @@ const old=window.hrTab;if(typeof old==='function')window.hrTab=function(t){const
       setStatus('تمت استعادة بيانات الموارد البشرية فقط بنجاح؛ لم تتغير بقية بيانات النظام.');
       if(typeof toast==='function')toast('تمت استعادة الموارد البشرية فقط من Firebase.');
       return true;
-    }catch(error){setStatus('تعذرت استعادة الموارد البشرية: '+(error?.message||'تحقق من Firebase والقواعد'));if(typeof toast==='function')toast('تعذرت استعادة الموارد البشرية؛ لم تتغير بقية البيانات.');return false}
+    }catch(error){const raw=String(error?.message||'تحقق من Firebase والقواعد'),msg=raw.includes('PERMISSION_DENIED')||raw.includes('permission_denied')?'صلاحية القراءة مرفوضة من Firebase؛ حدّث Rules للسماح بالقراءة عند مسار grandio/backups للمستخدم auth != null.':raw;setStatus('تعذرت استعادة الموارد البشرية: '+msg);if(typeof toast==='function')toast('تعذرت الاستعادة؛ لم تتغير بقية البيانات.');return false}
   };
   window.grandioRestoreFirebaseLatest=async function(){
     if(!window.grandioFirebaseRecoveryPayload?.data){if(typeof toast==='function')toast('لا توجد نسخة سحابية جاهزة للمعاينة.');return false}
