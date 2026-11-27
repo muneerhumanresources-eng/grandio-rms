@@ -1199,7 +1199,7 @@ body{background:radial-gradient(ellipse at 18% 0%,#684454 0,#302433 38%,#1f1924 
 <section id="backup" class="view">
    <div class="hero"><div><span class="eyebrow">GRANDIO · DATA SAFETY</span><h2>النسخ الاحتياطي والاستعادة</h2><p>احفظ نسخة من بيانات النظام على جهازك، وتابع متى أُعدت آخر نسخة.</p></div><div class="hero-actions"><button class="btn cyan" type="button" onclick="renderBackupStatus()">تحديث الحالة</button></div></div>
    <div class="backup-grid">
-    <div class="panel"><div class="section-head"><div><h3>حالة النسخة الاحتياطية</h3><p class="hint">آخر نسخة جرى تجهيزها على هذا المتصفح</p></div><span class="backup-status-pill missing" id="backupStatusBadge">لم يُطلب</span></div><div class="backup-status-box"><div class="backup-status-main"><strong id="backupLastDate">لا يوجد طلب تنزيل مسجل</strong><p id="backupStatusText">اطلب تنزيل نسخة الآن، ثم تحقق من وجود الملف في التنزيلات واحفظه في مكان آمن.</p></div></div><div class="row-actions" style="margin-top:12px"><button class="btn gold" type="button" onclick="downloadBackup()">تنزيل نسخة احتياطية الآن</button><button class="btn cyan" type="button" onclick="downloadVerifiedBackup()">تنزيل نسخة موثقة SHA-256</button><button class="btn cyan" type="button" onclick="runIntegrityCheck()">فحص سلامة البيانات</button><button class="btn green" type="button" onclick="grandioManualFirebaseBackup()">رفع نسخة إلى Firebase</button></div><p id="firebaseBackupStatus" class="hint">Firebase متصل بوضع محلي أولًا؛ لا يتم الرفع إلا عند الضغط على الزر وبعد التأكيد.</p><div id="integrityCheckResult" class="data-note" style="display:none"></div><p class="hint">النسخة ملف JSON يحتوي بيانات النظام. التنزيل محلي، لكن لا يستطيع Grandio التحقق تلقائيًا من اكتماله؛ تحقق من وجود الملف في التنزيلات.</p><p class="hint">النسخة لا تتضمن حسابات الدخول أو كلمات المرور؛ واستعادة النسخة لا تغيّرها.</p></div>
+    <div class="panel"><div class="section-head"><div><h3>حالة النسخة الاحتياطية</h3><p class="hint">آخر نسخة جرى تجهيزها على هذا المتصفح</p></div><span class="backup-status-pill missing" id="backupStatusBadge">لم يُطلب</span></div><div class="backup-status-box"><div class="backup-status-main"><strong id="backupLastDate">لا يوجد طلب تنزيل مسجل</strong><p id="backupStatusText">اطلب تنزيل نسخة الآن، ثم تحقق من وجود الملف في التنزيلات واحفظه في مكان آمن.</p></div></div><div class="row-actions" style="margin-top:12px"><button class="btn gold" type="button" onclick="downloadBackup()">تنزيل نسخة احتياطية الآن</button><button class="btn cyan" type="button" onclick="downloadVerifiedBackup()">تنزيل نسخة موثقة SHA-256</button><button class="btn cyan" type="button" onclick="runIntegrityCheck()">فحص سلامة البيانات</button><button class="btn green" type="button" onclick="grandioManualFirebaseBackup()">رفع نسخة إلى Firebase</button><button class="btn red" type="button" onclick="grandioManualFirebaseCleanup()">تنظيف النسخ القديمة</button></div><p id="firebaseBackupStatus" class="hint">Firebase متصل بوضع محلي أولًا؛ لا يتم الرفع إلا عند الضغط على الزر وبعد التأكيد.</p><p id="firebaseCleanupStatus" class="hint">تنظيف Firebase اختياري ويدوي؛ يحتفظ النظام بآخر 30 نسخة ولا يحذف تلقائيًا.</p><div class="row-actions" style="margin-top:10px"><button class="btn cyan" type="button" onclick="grandioRestoreHrOnlyFromFirebase()">استعادة الموارد البشرية فقط من Firebase</button></div><p id="firebaseHrRestoreStatus" class="hint">يمكن استعادة الموارد البشرية وحدها دون تغيير بقية بيانات النظام.</p><div id="firebaseRecoveryPanel" class="backup-preview" style="display:none"><h4>نسخة سحابية جاهزة للمعاينة</h4><p><b>تاريخ النسخة:</b> <span id="firebaseRecoveryDate"></span></p><p><b>ملخص السجلات:</b> <span id="firebaseRecoveryCounts"></span></p><p class="hint">لن يتم استبدال أي بيانات محلية إلا إذا كانت فارغة الآن وبعد تأكيدك.</p><button class="btn gold" type="button" onclick="grandioRestoreFirebaseLatest()">استعادة النسخة السحابية</button></div><div id="integrityCheckResult" class="data-note" style="display:none"></div><p class="hint">النسخة ملف JSON يحتوي بيانات النظام. التنزيل محلي، لكن لا يستطيع Grandio التحقق تلقائيًا من اكتماله؛ تحقق من وجود الملف في التنزيلات.</p><p class="hint">النسخة لا تتضمن حسابات الدخول أو كلمات المرور؛ واستعادة النسخة لا تغيّرها.</p></div>
     <div class="panel"><h3>استعادة نسخة احتياطية</h3><p class="hint">اختر ملف JSON صادرًا من Grandio. ستظهر معاينة لمحتواه قبل أن تقرر الاستعادة.</p><button class="btn" type="button" onclick="document.getElementById('restoreFile').click()">اختيار ملف النسخة</button><input id="restoreFile" type="file" accept=".json,application/json" hidden onchange="previewBackupRestore(event)"><div id="restorePreview" class="backup-preview" style="display:none"><h4>معاينة النسخة المختارة</h4><p><b>اسم الملف:</b> <span id="restorePreviewFilename"></span></p><p><b>حجم الملف:</b> <span id="restorePreviewSize"></span></p><p><b>تاريخ النسخة:</b> <span id="restorePreviewDate"></span></p><p><b>سلامة البنية:</b> <span id="restorePreviewValidity"></span></p><p><b>محتوى النسخة:</b> <span id="restorePreviewCounts"></span></p><p><b>البيانات الحالية:</b> <span id="restorePreviewCurrentCounts"></span></p><div class="data-note backup-local-warning"><b>تنبيه</b><span>الاستعادة تستبدل البيانات المالية والتشغيلية الحالية بالكامل. أنشئ نسخة منها أولًا إذا أردت الاحتفاظ بها. حسابات الدخول وكلمات المرور لا تتغير.</span></div><div class="backup-preview-actions"><button class="btn red" id="applyRestoreButton" type="button" disabled onclick="applyBackupRestore()">استعادة النسخة الآن</button><button class="btn" type="button" onclick="cancelBackupRestore()">إلغاء</button></div></div><p class="hint">بعد اختيار ملف JSON وفحصه ومعاينة عدد السجلات، اضغط «استعادة النسخة الآن» لاستعادة جميع بيانات النسخة دفعة واحدة. ينشئ النظام نسخة أمان من الوضع الحالي قبل التنفيذ.</p></div>
    </div>
    <div class="panel"><div class="section-head"><h3>النسخ الداخلية الوقائية</h3><div class="row-actions"><button class="btn cyan" type="button" onclick="renderDurableSnapshotStatus()">تحديث الحالة</button><button class="btn gold" type="button" onclick="restoreDurableSnapshotNow()">استعادة نسخة IndexedDB</button></div></div><p id="durableSnapshotStatus" class="hint">جارٍ التحقق من النسخة الداخلية الوقائية...</p><p class="hint">يستعيد الزر نسخة <b>latest</b> من قاعدة <b>GRANDIO_DURABLE_BACKUP_V1</b>. قبل الاستعادة يحفظ النظام الوضع الحالي في لقطات الأمان، ولا يحذف أي قاعدة أو مخزن.</p></div><div class="panel"><div class="section-head"><h3>مؤشرات التخزين والحفظ</h3><button class="btn cyan" type="button" onclick="renderStorageMetrics()">تحديث المؤشرات</button></div><p id="storageMetricsStatus" class="hint">جارٍ حساب حجم البيانات...</p><p id="persistentStorageStatus" class="hint">حالة ثبات تخزين المتصفح لم تُفحص بعد. <button class="btn small cyan" type="button" onclick="requestGrandioStoragePersistence()">طلب تثبيت التخزين</button></p><p class="hint">يظهر تنبيه مبكر قبل بلوغ الحد الوقائي. عند ظهور تحذير، نزّل نسخة JSON وأزل المرفقات الكبيرة غير الضرورية.</p></div><div class="panel"><h3>تذكير مهم</h3><p class="hint">تُحفظ البيانات محليًا في هذا المتصفح على هذا الكمبيوتر. استخدم المتصفح نفسه وملف النظام من المسار نفسه؛ فقد لا تظهر البيانات إذا فتحت نسخة من الملف في مسار أو متصفح آخر. يظهر التذكير عند فتح النظام فقط. نزّل نسخة دوريًا وانسخها إلى وحدة تخزين خارجية منفصلة عن الكمبيوتر.</p><p class="hint"><b>ملخص البيانات الحالية:</b> <span id="backupCurrentCounts">—</span></p><p class="hint">قد تضيف النسخ القديمة كافيهًا افتراضيًا إذا لم يكن للفندق كافيه محفوظ.</p></div>
@@ -2923,9 +2923,99 @@ const old=window.hrTab;if(typeof old==='function')window.hrTab=function(t){const
   };
   window.grandioFirebaseReadLatest=async function(){
     if(!remote)throw new Error('لم يتم تحميل Firebase أو تعذر تهيئته');
+    if(!window.firebase.auth)throw new Error('لم يتم تحميل Firebase Authentication');
+    const auth=window.firebase.auth(app);
+    if(!auth.currentUser){try{await auth.signInAnonymously()}catch(error){throw new Error('تفعيل Anonymous Authentication مطلوب لقراءة النسخة: '+(error?.code||error?.message||'auth error'))}}
     const snap=await remote.ref('grandio/backups').limitToLast(1).once('value');
-    return snap.exists()?snap.val():null;
+    if(!snap.exists())return null;
+    const rows=snap.val()||{},keys=Object.keys(rows).sort();
+    return keys.length?{key:keys[keys.length-1],...rows[keys[keys.length-1]]}:null;
   };
+  const localGrandioIsEmpty=()=>{
+    try{
+      const source=typeof db!=='undefined'?db:{};
+      const keys=['branches','sales','revenues','expenses','custodies','custodySettlements','closings','monthlyClosings','customers','catalog','cafes','hotelReservations','hotelReservationPayments'];
+      const core=keys.reduce((n,k)=>n+(Array.isArray(source[k])?source[k].length:0),0);
+      const hr=typeof grandioReadHrStores==='function'?grandioReadHrStores():{};
+      const hrCount=Object.values(hr||{}).reduce((n,v)=>n+(Array.isArray(v)?v.length:0),0);
+      return core===0&&hrCount===0;
+    }catch(_){return false}
+  };
+  window.grandioFirebaseRecoveryPayload=null;
+  window.grandioAutoFirebaseRecoveryCheck=async function(){
+    const setStatus=text=>{for(const id of ['firebaseRecoveryStatus','dashboardFirebaseBackupStatus']){const el=document.getElementById(id);if(el)el.textContent=text}};
+    if(!localGrandioIsEmpty()){setStatus('توجد بيانات محلية محفوظة؛ تم تجاوز الاستعادة السحابية لحماية البيانات.');return false;}
+    try{
+      setStatus('البيانات المحلية فارغة؛ جارٍ فحص آخر نسخة في Firebase...');
+      const latest=await Promise.race([window.grandioFirebaseReadLatest(),new Promise((_,reject)=>setTimeout(()=>reject(new Error('انتهت مهلة فحص Firebase؛ لم تتغير البيانات المحلية')),15000))]);
+      if(!latest||!latest.data){setStatus('لا توجد نسخة Grandio قابلة للاستعادة في Firebase.');return false;}
+      window.grandioFirebaseRecoveryPayload=latest;
+      const panel=document.getElementById('firebaseRecoveryPanel');
+      const stamp=latest.exportedAt?new Date(latest.exportedAt).toLocaleString('ar-SA'):'غير محدد';
+      const count=typeof backupCounts==='function'?backupCounts(latest.data,latest.hrStores||{}):'تم العثور على نسخة صالحة';
+      if(document.getElementById('firebaseRecoveryDate'))document.getElementById('firebaseRecoveryDate').textContent=stamp;
+      if(document.getElementById('firebaseRecoveryCounts'))document.getElementById('firebaseRecoveryCounts').textContent=count;
+      if(panel)panel.style.display='block';
+      setStatus('تم العثور على نسخة سحابية؛ راجع المعاينة ثم اضغط استعادة إذا كانت مناسبة.');
+      return true;
+    }catch(error){setStatus('تعذر فحص Firebase: '+(error?.message||'تحقق من الاتصال والقواعد'));return false}
+  };
+  window.grandioRestoreHrOnlyFromFirebase=async function(){
+    const setStatus=text=>{for(const id of ['firebaseHrRestoreStatus','firebaseBackupStatus','dashboardFirebaseBackupStatus']){const el=document.getElementById(id);if(el)el.textContent=text}};
+    if(!window.grandioFirebase?.status?.initialized){setStatus('Firebase غير متاح؛ لم تتم استعادة الموارد البشرية.');return false;}
+    setStatus('جارٍ قراءة آخر نسخة من Firebase...');
+    try{
+      const latest=await Promise.race([window.grandioFirebaseReadLatest(),new Promise((_,reject)=>setTimeout(()=>reject(new Error('انتهت مهلة الاتصال')),15000))]);
+      const stores=latest?.hrStores||{},moduleData=stores.GRANDIO_HR_MODULE_V1;
+      if(!moduleData||typeof moduleData!=='object')throw new Error('لا توجد بيانات GRANDIO_HR_MODULE_V1 في آخر نسخة');
+      const summary=Object.entries(moduleData).map(([k,v])=>k+': '+(Array.isArray(v)?v.length:(v&&typeof v==='object'?Object.keys(v).length:1))).join(' · ');
+      if(!window.confirm('سيتم استعادة بيانات الموارد البشرية فقط من نسخة Firebase الأخيرة. لن يتم تغيير الإيرادات أو المصروفات أو الفروع أو العهدة. الملخص: '+summary+' هل تريد المتابعة؟')){setStatus('تم إلغاء استعادة الموارد البشرية؛ لم تتغير البيانات.');return false;}
+      const key='GRANDIO_HR_MODULE_V1',previous=localStorage.getItem(key);
+      try{if(previous!==null)localStorage.setItem(key+'.SAFETY_BEFORE_FIREBASE_RESTORE',previous);localStorage.setItem(key,JSON.stringify(moduleData));}
+      catch(saveError){if(previous===null)localStorage.removeItem(key);else localStorage.setItem(key,previous);throw new Error('تعذر حفظ بيانات الموارد البشرية محليًا')}
+      if(typeof window.write==='function'){try{window.write(moduleData)}catch(_){} }
+      if(typeof renderHrModule==='function')renderHrModule();
+      setStatus('تمت استعادة بيانات الموارد البشرية فقط بنجاح؛ لم تتغير بقية بيانات النظام.');
+      if(typeof toast==='function')toast('تمت استعادة الموارد البشرية فقط من Firebase.');
+      return true;
+    }catch(error){setStatus('تعذرت استعادة الموارد البشرية: '+(error?.message||'تحقق من Firebase والقواعد'));if(typeof toast==='function')toast('تعذرت استعادة الموارد البشرية؛ لم تتغير بقية البيانات.');return false}
+  };
+  window.grandioRestoreFirebaseLatest=async function(){
+    if(!window.grandioFirebaseRecoveryPayload?.data){if(typeof toast==='function')toast('لا توجد نسخة سحابية جاهزة للمعاينة.');return false}
+    if(!localGrandioIsEmpty()){if(typeof toast==='function')toast('تم إيقاف الاستعادة لأن بيانات محلية أصبحت موجودة.');return false}
+    if(!window.confirm('سيتم استعادة آخر نسخة من Firebase لأن البيانات المحلية فارغة. هل تريد المتابعة؟'))return false;
+    const payload=window.grandioFirebaseRecoveryPayload,before=typeof db!=='undefined'?db:null,previousHr={};
+    try{
+      if(typeof grandioHrStoreKeys==='function')for(const key of grandioHrStoreKeys())previousHr[key]=localStorage.getItem(key);
+      db={...newDb(),...(payload.data||{})};
+      if(!persist()){db=before;throw new Error('تعذر حفظ النسخة محليًا؛ لم يتم تغيير البيانات السابقة.')}
+      if(payload.hrStores&&typeof payload.hrStores==='object'&&typeof grandioHrStoreKeys==='function')for(const key of grandioHrStoreKeys())if(Object.prototype.hasOwnProperty.call(payload.hrStores,key))localStorage.setItem(key,JSON.stringify(payload.hrStores[key]));
+      if(typeof renderAll==='function')renderAll();
+      if(typeof toast==='function')toast('تمت استعادة نسخة Firebase محليًا بنجاح.');
+      setTimeout(()=>location.reload(),600);return true;
+    }catch(error){if(before)db=before;for(const key of Object.keys(previousHr)){try{if(previousHr[key]===null)localStorage.removeItem(key);else localStorage.setItem(key,previousHr[key])}catch(_){}}if(typeof toast==='function')toast('تعذرت الاستعادة؛ لم يتم استبدال البيانات المحلية.');return false}
+  };
+  window.grandioFirebaseCleanupOldBackups=async function(keep=30){
+    if(!remote)throw new Error('لم يتم تحميل Firebase أو تعذر تهيئته');
+    if(!window.firebase.auth)throw new Error('لم يتم تحميل Firebase Authentication');
+    const auth=window.firebase.auth(app);
+    if(!auth.currentUser){try{await auth.signInAnonymously()}catch(error){throw new Error('تفعيل Anonymous Authentication مطلوب للتنظيف: '+(error?.code||error?.message||'auth error'))}}
+    const snap=await remote.ref('grandio/backups').once('value');
+    if(!snap.exists())return {total:0,removed:0,kept:0};
+    const rows=snap.val()||{},entries=Object.entries(rows).sort((a,b)=>Date.parse(a[1]?.exportedAt||a[0])-Date.parse(b[1]?.exportedAt||b[0]));
+    const old=entries.slice(0,Math.max(0,entries.length-keep));
+    for(const [key] of old)await remote.ref('grandio/backups/'+key).remove();
+    return {total:entries.length,removed:old.length,kept:entries.length-old.length};
+  };
+  window.grandioManualFirebaseCleanup=async function(){
+    const setStatus=text=>{for(const id of ['firebaseCleanupStatus','dashboardFirebaseBackupStatus']){const el=document.getElementById(id);if(el)el.textContent=text}};
+    if(!window.grandioFirebase?.status?.initialized){setStatus('Firebase غير متاح؛ لم يتم حذف أي نسخة.');return false;}
+    if(!window.confirm('سيتم حذف النسخ الأقدم من آخر 30 نسخة داخل Firebase فقط. لن تتأثر البيانات المحلية أو ملفات JSON على جهازك. هل تريد المتابعة؟')){setStatus('تم إلغاء تنظيف النسخ؛ لم يتم حذف أي شيء.');return false;}
+    setStatus('جارٍ فحص النسخ القديمة في Firebase...');
+    try{const result=await Promise.race([window.grandioFirebaseCleanupOldBackups(30),new Promise((_,reject)=>setTimeout(()=>reject(new Error('انتهت مهلة التنظيف؛ لم يتم ضمان اكتماله')),20000))]);setStatus('اكتمل تنظيف Firebase: تم الاحتفاظ بـ '+result.kept+' نسخة وحذف '+result.removed+' نسخة قديمة.');if(typeof toast==='function')toast('اكتمل تنظيف النسخ القديمة في Firebase.');return true}
+    catch(error){setStatus('تعذر تنظيف Firebase: '+(error?.message||'لم يتم ضمان حذف أي نسخة'));if(typeof toast==='function')toast('تعذر تنظيف النسخ؛ البيانات المحلية لم تتأثر.');return false}
+  };
+  setTimeout(()=>{if(typeof window.grandioAutoFirebaseRecoveryCheck==='function')window.grandioAutoFirebaseRecoveryCheck()},3500);
   window.grandioManualFirebaseBackup=async function(){
     const setStatus=text=>{for(const id of ['firebaseBackupStatus','dashboardFirebaseBackupStatus']){const el=document.getElementById(id);if(el)el.textContent=text}};
     if(!window.grandioFirebase?.status?.initialized){setStatus('Firebase غير متاح حاليًا؛ لم يتم تغيير البيانات المحلية.');if(typeof toast==='function')toast('Firebase غير متاح حاليًا.');return false;}
