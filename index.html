@@ -2900,6 +2900,7 @@ const old=window.hrTab;if(typeof old==='function')window.hrTab=function(t){const
 })();</script><!-- Grandio Firebase bridge: local storage remains the primary source until cloud rules are verified. -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script id="grandio-firebase-bridge">
 (()=>{
   const config={apiKey:'AIzaSyDumQGxJ7fhkz3zhzmOn6D1VWjSOqo2Z-0',authDomain:'grandio-f3261.firebaseapp.com',databaseURL:'https://grandio-f3261-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'grandio-f3261',storageBucket:'grandio-f3261.firebasestorage.app',messagingSenderId:'8318278969',appId:'1:8318278969:web:c4bf79b213ba06bbc0dce8'};
@@ -2910,6 +2911,9 @@ const old=window.hrTab;if(typeof old==='function')window.hrTab=function(t){const
   window.grandioFirebase={config,status,app,database:remote};
   window.grandioFirebaseBackupNow=async function(){
     if(!remote)throw new Error('لم يتم تحميل Firebase أو تعذر تهيئته');
+    if(!window.firebase.auth)throw new Error('لم يتم تحميل Firebase Authentication');
+    const auth=window.firebase.auth(app);
+    if(!auth.currentUser){try{await auth.signInAnonymously()}catch(error){throw new Error('تفعيل Anonymous Authentication مطلوب في Firebase قبل الرفع: '+(error?.code||error?.message||'auth error'))}}
     const source=typeof db!=='undefined'?db:null;
     if(!source)throw new Error('بيانات Grandio المحلية غير متاحة');
     const stamp=new Date().toISOString().replace(/[:.]/g,'-'),payload={format:'TAWHEED-SALES-REVENUE-BACKUP',schemaVersion:9,exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(source)),hrStores:typeof grandioReadHrStores==='function'?grandioReadHrStores():{}};
