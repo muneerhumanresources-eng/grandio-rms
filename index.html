@@ -2897,7 +2897,34 @@ function enhance(){const r=root();if(!r||!r.innerHTML.includes('السلف وا�
 function setupTabs(){const r=root();if(!r||r.querySelector('.grandio-adv-tabs'))return;const layout=r.querySelector('.grandio-adv-layout');if(!layout)return;const panels=[...r.querySelectorAll(':scope > .hr-panel')];const archive=r.querySelector('.hr-advance-archive')||panels.find(p=>(p.innerText||'').includes('أرشيف السلف المسددة'));const employee=panels.find(p=>(p.innerText||'').includes('كشف السلف والأقساط حسب الموظف'));const trash=panels.find(p=>(p.innerText||'').includes('سلة السلف المحذوفة'));const pages={main:layout,archive,employee,trash};Object.values(pages).forEach(p=>p&&p.classList.add('grandio-adv-tab-page'));r.querySelectorAll(':scope > .hr-attendance-print-actions').forEach(p=>p.classList.add('grandio-adv-unrelated'));const tabs=document.createElement('div');tabs.className='grandio-adv-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button type="button" class="grandio-adv-tab" data-adv-section="main" role="tab">السلف والأقساط<small>الكشف الرئيسي والمتابعة</small></button><button type="button" class="grandio-adv-tab" data-adv-section="archive" role="tab">أرشيف السلف المسددة<small>السجلات المكتملة</small></button><button type="button" class="grandio-adv-tab" data-adv-section="employee" role="tab">كشف السلف والأقساط حسب الموظف<small>الحركات والتفاصيل</small></button><button type="button" class="grandio-adv-tab" data-adv-section="trash" role="tab">سلة المحذوفات<small>الاستعادة المؤقتة</small></button>';const tools=r.querySelector('.grandio-adv-tools');(tools||layout).after(tabs);const show=key=>{Object.entries(pages).forEach(([name,p])=>{if(!p)return;p.classList.toggle('is-hidden',name!==key);p.classList.toggle('is-active',name===key)});tabs.querySelectorAll('.grandio-adv-tab').forEach(b=>{const on=b.dataset.advSection===key;b.classList.toggle('active',on);b.setAttribute('aria-selected',on?'true':'false')});const main=key==='main';const head=r.querySelector('.grandio-adv-head'),kpis=r.querySelector('.grandio-adv-kpis'),filterTools=r.querySelector('.grandio-adv-tools');[kpis,filterTools].forEach(e=>{if(e)e.classList.toggle('is-hidden',!main)});if(head)head.setAttribute('data-active-section',key)};tabs.addEventListener('click',e=>{const b=e.target.closest('[data-adv-section]');if(b)show(b.dataset.advSection)});show('main')}
 function filter(){const r=root(),q=(document.getElementById('grandioAdvanceSearch')?.value||'').trim().toLowerCase(),st=document.getElementById('grandioAdvanceStatus')?.value||'all',br=document.getElementById('grandioAdvanceBranch')?.value||'all',main=r?.querySelector('.grandio-adv-primary');if(!main)return;main.querySelectorAll('tbody tr').forEach(row=>{const text=row.textContent.toLowerCase(),okSearch=!q||text.includes(q),okState=st==='all'||(st==='open'&&!text.includes('مسددة بالكامل'))||(st==='closed'&&text.includes('مسددة بالكامل')),okBranch=br==='all'||text.includes((document.getElementById('grandioAdvanceBranch')?.selectedOptions?.[0]?.textContent||'').toLowerCase());row.style.display=okSearch&&okState&&okBranch?'':'none'})}
 const old=window.hrTab;if(typeof old==='function')window.hrTab=function(t){const v=old.apply(this,arguments);if(t==='advances')setTimeout(enhance,0);return v};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(enhance,100));else setTimeout(enhance,100);
-})();</script></body><style id="grandio-payroll-no-yellow-absolute">
+})();</script><!-- Grandio Firebase bridge: local storage remains the primary source until cloud rules are verified. -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script id="grandio-firebase-bridge">
+(()=>{
+  const config={apiKey:'AIzaSyDumQGxJ7fhkz3zhzmOn6D1VWjSOqo2Z-0',authDomain:'grandio-f3261.firebaseapp.com',databaseURL:'https://grandio-f3261-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'grandio-f3261',storageBucket:'grandio-f3261.firebasestorage.app',messagingSenderId:'8318278969',appId:'1:8318278969:web:c4bf79b213ba06bbc0dce8'};
+  let app=null,remote=null;
+  try{if(window.firebase){app=window.firebase.apps?.length?window.firebase.app():window.firebase.initializeApp(config);remote=window.firebase.database(app);}}
+  catch(error){console.warn('Grandio Firebase initialization failed',error)}
+  const status={configured:true,initialized:!!remote,mode:'local-first',lastBackupAt:''};
+  window.grandioFirebase={config,status,app,database:remote};
+  window.grandioFirebaseBackupNow=async function(){
+    if(!remote)throw new Error('لم يتم تحميل Firebase أو تعذر تهيئته');
+    const source=typeof db!=='undefined'?db:null;
+    if(!source)throw new Error('بيانات Grandio المحلية غير متاحة');
+    const stamp=new Date().toISOString().replace(/[:.]/g,'-'),payload={format:'TAWHEED-SALES-REVENUE-BACKUP',schemaVersion:9,exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(source))};
+    await remote.ref('grandio/backups/'+stamp).set(payload);
+    status.lastBackupAt=payload.exportedAt;
+    return {ok:true,path:'grandio/backups/'+stamp,exportedAt:payload.exportedAt};
+  };
+  window.grandioFirebaseReadLatest=async function(){
+    if(!remote)throw new Error('لم يتم تحميل Firebase أو تعذر تهيئته');
+    const snap=await remote.ref('grandio/backups').limitToLast(1).once('value');
+    return snap.exists()?snap.val():null;
+  };
+})();
+</script>
+</body><style id="grandio-payroll-no-yellow-absolute">
 #hr .hr-tab.active{border:1px solid #58b8b5!important;background:linear-gradient(135deg,#1f6d78,#2c9a9a)!important;color:#f3ffff!important}
 #hr .btn.gold,#hr button.btn.gold,#hr .payroll-design-a .btn.gold{background:#2a8f91!important;border:1px solid #61c5bd!important;color:#f1ffff!important;box-shadow:none!important}
 #hr .payroll-design-a .payroll-a-period-badge{background:#102a42!important;border:1px solid #4b7891!important;color:#c0e2ec!important}
