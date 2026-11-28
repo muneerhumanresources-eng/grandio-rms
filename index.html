@@ -2861,7 +2861,7 @@ window.hotelReservationPage=hotelReservationPage;window.renderHotelReservations=
   function decorate(){
     const root=$('hrTabContent');if(!root)return;
     root.querySelectorAll('.hr-table tbody tr').forEach(row=>{
-      if(row.querySelector('[data-hr-transfer]'))return;
+      if(row.querySelector('[data-hr-transfer-id]'))return;
       const edit=[...row.querySelectorAll('button')].find(b=>String(b.getAttribute('onclick')||'').includes('hrEditEmployee'));
       if(!edit)return;
       const raw=String(edit.getAttribute('onclick')||'').replace(/&quot;/g,'\"').replace(/&#39;/g,"'");
